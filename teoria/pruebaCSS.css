@@ -1,0 +1,54 @@
+*{
+	
+	box-sizing: border-box;
+}
+
+body>header {
+
+	background-color : #E1D613  /*Para seleccionar un color hacer control+shift+c */ 
+	color: #FFFFFF;
+	overflow: hidden;
+}
+body>nav{
+	overflow: hidden;
+	background-color: #34EB0D;
+}
+	body>nav>ul{
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		text-align: center;
+
+	}
+		body>nav>ul>li{
+			display: inline-block;
+			
+		}
+			body>nav>ul>li>a{
+				display: block;
+				padding: .2em .4em; /* arriba derecha abajo izquierda, si alguno falta es como un blucle "1.2.3"-->1.2.3.1*/
+				font-weight: bold;
+			}
+
+			body>nav>ul>li>a:hover{
+				background-color: #FFFFFF;
+				 color: #D2AE29;
+			}
+
+
+
+body>section{
+	background-color: #E1D613;
+	overflow: hidden;
+}
+
+body>footer{
+
+	overflow: hidden;
+	background-color: #E1D613;
+
+}
+
+body [data-pagina="index"]>section>article{
+
+}

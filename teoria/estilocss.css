@@ -1,0 +1,188 @@
+@import url('https://fonts.googleapis.com/css?family=Crafty+Girls');
+
+*{
+
+
+box-sizing: border-box;
+
+
+}
+
+body{
+min-width: 320px;
+max-width: 960px;
+margin: 0 auto;
+padding: 0.5em;
+}
+
+/* CABECERA*/
+
+body>header{
+	display: flex;
+	flex-direction: column;
+
+	overflow: hidden;
+	background-color: #00a;
+	padding: .5em;
+	text-align: center;
+}
+body>header>img{
+	align-self: center;
+}
+
+body>header>div{
+display: flex;
+flex-direction: column;
+}
+
+body>header>div>p{
+	font-family: 'Crafty Girls', cursive; /* esto para crgar una fuente en específico */
+	border-top: 1px solid #fff;
+	border-bottom:1px solid #fff;
+	margin: 0;
+	padding: .5em
+}
+
+/* BARRA DE NAVEGACION */
+
+body>nav{
+	background-color: #f80;
+}
+body>nav>ul{
+	list-style: none;/* quitar los circulos como si fuera una lista de URL */
+	padding: 0;
+	margin: 0;
+	max-height: 1.5em;  /* Necesario para el menú de hambuerguesa */
+	overflow: hidden;
+
+	transition: max-height 1s ease-in-out;
+	
+}
+body>nav>ul>li>a{
+	display: block;
+	padding: .2em 0 .0em .2em;
+	text-decoration: none;  /* para quitar la barra de abajo de los enlaces (subrayado)*/
+	font-weight: bold; /*  negrita*/
+	}
+body>nav>ul>li>a:hover{
+	background-color: #2A41DD;
+	color: #fff;
+}
+
+body>nav>ul>li:first-of-type>label{
+	font-weight: bold;
+	margin-left: .2em;
+	display: inline-block;
+	font-size: 1.5em;
+	cursor: pointer;
+
+	transition: transform .5s ease-in-out;
+}
+
+
+#burger{
+	display: none;
+}
+
+#burger:checked+ul{
+	max-height: 20em;
+}
+
+#burger:checked+ul>li:first-of-type>label{
+	transform: rotate(90deg);
+}
+
+/* contenido */
+
+body>section{
+	background-color: #ccc;
+	padding: .5em;
+}
+body>section>h2{
+	border-bottom: 1px solid #00a;
+
+}
+
+body>section>div{
+display: flex;
+flex-direction: column;
+	}
+
+	body>section>article{
+		background-color: #fff;
+		padding: .5em;
+		margin: .5em 0;
+		flex-grow: 1; /* para que se ajuste automaticamente ese % sobrante hasta el 100% (util para divisiones en celdas)
+							tambien existe otro flex que encoje en vez de agrandar */
+
+	 	flex-direction: column;
+	}
+
+		body>section>article>h3{
+
+			/* poner el titulo con puntos suspensivos para que solo ocupe una linea(hay que escribir estas 4 lineas)
+			al poner esto es recomendable que en el HTML escribamos por ejemplo <h3 title="el titulo entero" y asi saldrá
+			si ponemos el ratón encima */ 
+			text-overflow: ellipsis; 
+			overflow: hidden; 
+			width: 100%;
+			
+			white-space: nowrap;
+
+		}
+
+		body>section>article>footer{
+			border-top: 1px dotted #234; /* linea de puntos para separar */
+		}
+/*  FOOTER DEL BODY*/
+
+body>footer{
+	overflow: hidden;
+	background-color: #20E022;
+	color: #fff;
+	padding: 0.5em;
+
+}
+
+	body>footer>p{
+
+		margin: 0;
+	}
+
+	/*  media wueries*/
+
+	@media all and (min-width: 480px){
+		body>header{
+			flex-direction: row;
+		}
+
+		body>header>div{
+			margin-left: 1em;
+		}
+
+		body>section{
+			flex-direction: row;
+			flex-wrap: wrap;
+			justify-content: space-around;
+
+		}
+
+		body>section>div>article
+		{
+
+			width: 46%;
+			margin-left: .5em;
+		}
+
+		body>nav>ul>li{
+			display: inline-block;
+		}
+			body>nav>ul>li:first-of-type{
+				display: none;
+			}
+					
+	}
+
+
+
+

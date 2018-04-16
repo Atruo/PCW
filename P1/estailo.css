@@ -1,0 +1,400 @@
+
+@import url('https://fonts.googleapis.com/css?family=Inconsolata');
+*{
+
+
+box-sizing: border-box;
+font-family: 'Inconsolata', monospace;
+
+
+}
+
+
+body{
+min-width: 320px;
+max-width: 960px;
+margin: 0 auto;
+padding: 0em;
+
+}
+
+/* CABECERA*/
+
+
+body>header{
+	display: flex;
+	flex-direction: column;
+
+	overflow: hidden;
+	background-image: url(cabecera_recetas_imagen.png);
+	background size: auto;
+	padding: .5em;
+	text-align: center;
+	height: 15em;
+	background-color: #FFEBB6;
+	
+
+	
+	
+
+
+}
+
+
+body>header>div>img{
+
+	align-self: center;
+}
+body>header>div{
+display: flex;
+flex-direction: column;
+}
+
+
+
+
+
+
+
+
+body>header>div>h1{
+
+
+color: #EC1818;
+
+}
+
+body>header>div>p{
+	
+	color: #0F11E1;
+	/*border-top: 1px solid #fff;  el px es el grosor de la linea
+	border-bottom:1px solid #fff;*/
+	margin: .5em; /* separacion de las dos linas con as cosas de su alrededor */
+	padding: .5em
+	
+}
+
+
+
+
+
+
+/* BARRA DE NAVEGACION */
+body>nav{
+	overflow: hidden;
+	background-color: #34EB0D;
+}
+	body>nav>ul{
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		text-align: center;
+		max-height: 1.5em;
+
+		
+		transition: max-height 1s ease-in-out;
+		overflow: hidden;
+
+
+	}
+	body>nav>ul>li>a:visited{
+				text-decoration:none;
+			}
+		
+			body>nav>ul>li>a{
+				display: block;
+				padding: .2em .4em; /* arriba derecha abajo izquierda, si alguno falta es como un blucle "1.2.3"-->1.2.3.1*/
+				font-weight: bold;
+				text-decoration:none; 
+				
+			}
+			
+
+			body>nav>ul>li>a:hover{
+				background-color: #FFFFFF;
+				 color: #D2AE29;
+			}
+			
+			body>nav>ul>li:first-of-type>label{
+				font-weight: bold;
+				margin-left: .2em;
+				display: inline-block;
+				font-size: 1.5em;
+				cursor: pointer;
+
+
+				transition: transform .5s ease-in-out;
+			}
+
+			body>nav>ul>li:first-of-type{
+				text-align: left;
+				margin-left: .5em;
+			}
+
+#burger{
+	display: none;
+}
+
+#burger:checked+ul{
+	max-height: 20em;
+}
+
+#burger:checked+ul>li:first-of-type>label{
+	transform: rotate(90deg);
+}
+
+
+/* Articulos */
+
+body>p>input{
+	margin-left: 50%;
+}
+
+body>section{
+	background-color: #FFEBB6;
+
+}
+body>section>article{
+	width: 100%;
+	float: left;
+	padding: 20px 20px;
+	box-sizing: border-box;
+	
+
+	
+}
+
+
+body>section>article>a:visited{
+
+	
+				text-decoration:none;
+			
+}
+body>section>article>a{
+		text-decoration:none; 
+		color: #000000;
+
+}
+body>section>article>a>img{
+			width: 80%;
+
+
+	
+	}
+body>section>article>h3{
+
+			/* poner el titulo con puntos suspensivos para que solo ocupe una linea(hay que escribir estas 4 lineas)
+			al poner esto es recomendable que en el HTML escribamos por ejemplo <h3 title="el titulo entero" y asi saldrá
+			si ponemos el ratón encima */ 
+			text-overflow: ellipsis; 
+			overflow: hidden; 
+			width: 100%;
+			white-space: nowrap;
+
+		}
+
+
+/*  BOTONES */
+
+#botonPag{
+	margin-left: 30%;
+}
+/*  FOOTER */
+
+body>footer{
+	overflow: hidden;
+	background-color: #20E022;
+	color: #fff;
+	padding: 0.5em;
+	margin-top: 1em;
+
+
+}
+
+	body>footer>p{
+
+		margin: 0;
+	}
+
+	#pie>p>a>button{
+		margin-left: 10%
+	}
+	#pie>p{
+		text-align: center;
+	}
+
+	#centro{
+		text-align: center;
+	}
+	#center2{
+		text-align: center;
+	}
+
+
+
+
+
+
+
+
+
+/* ------------------------------------------REGISTRO------------------------------------- */
+
+#formulario{
+	margin-left: 3em;
+}
+#formulario>p{
+	width: 10em;
+}
+
+#formulario>form>p:hover{
+
+	background-color: #EA3C0D;
+
+}
+	
+#formulario>form>p>span>:focus{		
+
+background-color: #507FE9;
+}
+/* ------------------------------------------BUSCAR------------------------------------- */
+
+
+#buscarForm>p:hover{
+
+	background-color: #EA3C0D;
+				 
+
+}
+	
+#buscarForm>p>span>:focus{		
+
+background-color: #507FE9;
+}
+/* ------------------------------------------LOGIN------------------------------------- */
+
+#logeo{
+	width: 30%;
+	margin: auto;
+	align-self: center;
+	margin-top: 3em;
+}
+
+#textlogin>span{
+	margin-left: 1.5em;
+
+}
+
+
+
+#logeo>button{
+		width: 40%;
+		margin-left: 4em;
+		margin-top: 1em;
+		padding: .5em;
+		
+	}
+
+#logeo>form>p:hover{
+
+	background-color: #EA3C0D;
+
+}
+	
+#logeo>form>p>span>:focus{		
+
+background-color: #507FE9;
+}
+
+
+	/* ------------------------------------------RECETA------------------------------------- */
+
+
+
+	#recetaimg{
+
+		width: 60%;
+		margin-left: 20%;
+		padding: .5em;
+	}
+	
+	#coments>a>h5{
+		border-top:1px solid #000000;
+		border-bottom:1px solid #000000;
+	}
+	#coments>h4{
+		margin-left: .5em;
+	}
+
+
+
+	#comentarios{
+		margin-left: .5em;
+
+	}
+		/* ------------------------------------------RECETA------------------------------------- */
+
+#newReceta>img{
+	margin-top: .5em;
+
+	max-width: 20%;
+	}
+
+#newReceta>p:hover{
+
+	background-color: #EA3C0D;
+
+}
+	
+#newReceta>p>span>:focus{		
+
+background-color: #507FE9;
+}
+
+	/* --------------------------------------------Media---------------------------------------  */
+
+	
+	
+
+	@media all and (min-width: 480px){
+		
+
+		
+		body>header>div{
+			margin-left: 1em;
+		}
+
+		body>section>article{
+			width: 50%;
+		}
+
+	
+		body>nav>ul>li>a>span>span{
+			display: none;
+		}
+		
+		body>nav>ul>li{
+			display: inline-block;
+		}
+			body>nav>ul>li:first-of-type{
+				display: none;
+			}
+				body>nav>ul>li>label{
+				align-content: left;		
+				}
+
+
+		#botonPag{
+			margin-left: 40%;
+		}	
+	}
+
+	@media all and (min-width: 640px){
+	
+		body>nav>ul>li>a>span>span{
+			display: inline;
+		}
+		
+
+	}

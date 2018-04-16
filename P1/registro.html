@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Registro</title>
+	<link rel="stylesheet" href="estailo.css" type="text/css">
+	<link rel="stylesheet" href="css/fontello.css">
+	
+
+
+</head>
+
+
+<body>
+	<header>
+
+		
+
+		<div>
+			<img src="logo1.jpg" alt="logotipo">
+			<h1>HTMLOCOMO</h1>
+			<p>¡Que Sabroso!</p>
+			
+
+		</div>
+		
+	</header>
+	
+<nav>
+
+	<input type="checkbox" id="burger">
+	<ul>
+		
+		<li><label for="burger">&equiv;</label></li>
+		
+		<li><a  href="index.html"><span class="icon-home-1"><span>Inicio</span></span></a></li>
+		<li><a  href="buscar.html"><span class="icon-search"><span>Buscar</span></span></a></li>
+		<li><a  href="login.html"><span class="icon-login"><span>Login</span></span> </a></li>
+		<li><a  href="registro.html"><span class="icon-user-plus"><span>Registro</span></span></a></li>
+		<li><a  href=""><span class="icon-logout"><span>Logout</span></span></a></li>
+		<li><a  href="nueva-receta.html"><span class="icon-doc-new"><span>Nueva Receta</span></span></a></li>
+		
+	</ul>
+</nav>
+	
+
+<h3>Para registrarte tendrás que completar el siguiente formulario:</h3>
+<div id="formulario">
+
+	<form action="demo_form.asp" method="get">
+
+<p>Login <span><input type="text" name="Login" autofocus required="" pattern="[A-Aa-z]{1}[A-Za-z0-9]{5,19}"></span></p>
+<p>Nombre <span><input type="text" name="Nombre" required></span></p>
+<p>Password <span><input type="password" name="Password" required pattern="[A-Za-z0-9_-]{8,20}"></span></p>
+<p>Password2 <span><input type="password" name="Password2" required pattern="[A-Za-z0-9_-]{8,20}"></span></p>
+<p>Email <span><input type="email" name="Email" required></span></p>
+<p>Fecha Nacimiento <span><input type="date" name="Fecha" required></span></p>
+<button type="submit">Registrar</button>
+
+</form>
+</div>
+<footer id="pie">
+		<p> &copy; HTMLocomo todos los derechos reservados 2018. <a href="acerca.html">Acerca</a> de nosotros 
+			<a href="#"><span class="icon-up"></span></a>
+
+		</p>
+</footer>
+</body>
+</html>
