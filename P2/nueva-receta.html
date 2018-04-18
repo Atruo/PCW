@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Nueva Receta</title>
+	<link rel="stylesheet" href="estailo.css" type="text/css">
+	<link rel="stylesheet" href="css/fontello.css">
+	
+
+
+</head>
+
+
+<body>
+<header>
+
+		
+
+		<div>
+			<img src="logo1.jpg" alt="logotipo">
+			<h1>HTMLOCOMO</h1>
+			<p>¡Que Sabroso!</p>
+			
+
+		</div>
+		
+	</header>
+	
+<nav>
+
+	<input type="checkbox" id="burger">
+	<ul>
+		
+		<li><label for="burger">&equiv;</label></li>
+		
+		<li><a  href="index.html"><span class="icon-home-1"><span>Inicio</span></span></a></li>
+		<li><a  href="buscar.html"><span class="icon-search"><span>Buscar</span></span></a></li>
+		<li><a  href="login.html"><span class="icon-login"><span>Login</span></span> </a></li>
+		<li><a  href="registro.html"><span class="icon-user-plus"><span>Registro</span></span></a></li>
+		<li><a  href=""><span class="icon-logout"><span>Logout</span></span></a></li>
+		<li><a  href="nueva-receta.html"><span class="icon-doc-new"><span>Nueva Receta</span></span></a></li>
+		
+	</ul>
+</nav>
+
+	
+	<h2>Añade una receta</h2>
+
+	<form action="demo_form.asp" method="get" id="newReceta">
+
+		<p>Nombre: <span><input type="text" name="Nombre" maxlength="200" required="" autofocus=""></span></p>
+		<p>Número Comensales: <span><input type="number" name="numero" required=""></span></p>
+		<p>Tiempo de duración: <span><input type="number" name="tiempo" required=""></span></p>
+		<p>Dificultad: 
+				<select>
+				
+				<option value="facil">Fácil</option>
+				<option value="medio">Medio</option>
+				<option value="dificil">Difcil</option>
+
+				</select></p>
+				<p>Ingredientes: </p>
+				
+		<p>Pollo <span><input type="checkbox" name="pollo"></span>
+			Lechuga <span><input type="checkbox" name="lechuga"></span>
+			Ajo <span><input type="checkbox" name="Ajo"></span>
+			Ketchup <span><input type="checkbox" name="pollo"></span></p>
+			<p>Elaboración:</p>
+		<textarea rows="4" cols="50" required=""></textarea><br>
+
+		<p>Selecciona una imagen o sube tú una: </p>
+		<img src="pollo.jpg" alt="1">
+		<img src="pollo.jpg" alt="1">
+		<img src="pollo.jpg" alt="1"><br>
+		<p>Descripción: </p>
+		<textarea rows="4" cols="50" required=""></textarea><br>
+
+		<button type="button"> Subir</button> <button type="button">Borrar</button><br><br><br><br>
+
+		<button type="submit" >Publicar</button>
+
+
+
+	</form>
+
+
+	<footer id="pie">
+		<p> &copy; HTMLocomo todos los derechos reservados 2018. <a href="acerca.html">Acerca</a> de nosotros 
+			<a href="#"><span class="icon-up"></span></a>
+
+		</p>
+</footer>
+</body>
+</html>
