@@ -37,6 +37,18 @@ function comprobarStorage(){
 		
 		document.getElementById('menu_login').innerHTML="";
 		document.getElementById('menu_registro').innerHTML="";
+		
+		var log = window.location.href.split('/log');     //Para restringir el acceso a login estando logeado
+		var reg = window.location.href.split('/regi');	  //Para restringir el acceso a registro estando logeado
+
+		if(log[1] == "in.html"){
+			location.href = "index.html";
+		}
+
+		if(reg[1] == "stro.html"){
+			location.href = "index.html";
+		}		 
+
 
 
 
@@ -50,4 +62,22 @@ function comprobarStorage(){
 
 function cerrarSesion(){
 	sessionStorage.clear();
+}
+
+
+function busquedaRapida(frm){
+
+	buscar(frm);
+	location.href = "buscar.html";
+
+
+
+
+
+
+}
+
+function buscar(frm){
+
+
 }
