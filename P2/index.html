@@ -13,7 +13,7 @@
 </head>
 
 
-<body>
+<body onload="comprobarStorage();">
 	<header>
 
 		
@@ -37,28 +37,15 @@
 		
 		<li><a  href="index.html"><span class="icon-home-1"><span>Inicio</span></span></a></li>
 		<li><a  href="buscar.html"><span class="icon-search"><span>Buscar</span></span></a></li>
-		<li><a  href="login.html"><span class="icon-login"><span>Login</span></span> </a></li>
-		<li><a  href="registro.html"><span class="icon-user-plus"><span>Registro</span></span></a></li>
-		<li><a  href=""><span class="icon-logout"><span>Logout</span></span></a></li>
-		<li><a  href="nueva-receta.html"><span class="icon-doc-new"><span>Nueva Receta</span></span></a></li>
+		<li id="menu_login"><a  href="login.html"><span class="icon-login"><span>Login</span></span> </a></li>
+		<li id ="menu_registro"><a  href="registro.html"><span class="icon-user-plus"><span>Registro</span></span></a></li>
+		<li id ="menu_logout" onclick="cerrarSesion();"><a  href=""><span class="icon-logout"><span>Logout</span></span></a></li>
+		<li id ="menu_nueva"><a  href="nueva-receta.html"><span class="icon-doc-new"><span>Nueva Receta</span></span></a></li>
 		
 	</ul>
 </nav>
 
-<p>				Ordenar por
- 				<select>
-				
-				<option value="asc">Nombre Ascendete</option>
-				<option value="desc">Nombre Descendete</option>
-				<option value="valorados">Mejor Valorados</option>
-				<option value="fecha">Fecha</option>
 
-				</select>
-
-			
-				<input type="text" name="buscar" placeholder="Búsqueda Rápida">
-				
-			</p>
 
 <section>
 	
