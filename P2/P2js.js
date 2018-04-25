@@ -65,9 +65,9 @@ function cerrarSesion(){
 }
 
 
-function busquedaRapida(frm){
+function busquedaRapida(){
 
-	buscar(frm);
+	console.log('Entro en buscar');
 	location.href = "buscar.html";
 
 
