@@ -46,12 +46,12 @@
 </nav>
 
 
-<div id="logeo" onload="rellenar();">
+<div id="logeo">
 
 
-	<form action="demo_form.asp" method="get" onsubmit="return comprobar();">
-	<p id="textlogin">Login <span><input type="text" name="Login" autofocus required></span></p>
-	<p>Password <span><input type="password" name="Password" required></span></p>
+	<form action="demo_form.asp" method="post" onsubmit="return hacerLogin(this)">
+	<p id="textlogin">Login <span><input type="text" name="login" autofocus required></span></p>
+	<p>Password <span><input type="password" name="pwd" required></span></p>
 	<input type="checkbox" name="ckbGuardar">Recordar Credenciales> <br>
 
 	
@@ -64,7 +64,7 @@
 
 </div>
 
-<button onclick="pedirReceta();"></button>
+
 
 
 
