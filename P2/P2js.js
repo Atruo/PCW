@@ -1,3 +1,5 @@
+var recetas;
+
 function hacerLogin(frm){
 
 	let xhr = new XMLHttpRequest(),
@@ -8,16 +10,28 @@ function hacerLogin(frm){
 	xhr.onload = function(){
 		console.log(xhr.responseText);
 		let r = JSON.parse(xhr.responseText);
+
+		var error = document.getElementById('login_mal'),
+		ocultar = document.getElementById('logeo');
+
+		
+
 		if(r.RESULTADO=='OK'){
 			sessionStorage.setItem('usuario',xhr.responseText);
 			console.log("Sesion Iniciada");
 			location.href = "index.html";
 
+
 		}else{
 			console.log("Error en el login");
 
-			alert("Error al hacer login");
-			location.reload();
+			//alert("Error al hacer login");
+			//location.reload();
+
+			
+
+				ocultar.style.display = 'none';
+				error.style.display = 'block';
 
 		}
 	};
@@ -26,7 +40,16 @@ function hacerLogin(frm){
 	return false;
 
 }
+function quitarMensaje(){
 
+	var error = document.getElementById('login_mal'),
+		ocultar = document.getElementById('logeo');
+
+		ocultar.style.display = 'block';
+		error.style.display = 'none';
+
+
+}
 function comprobarStorage(){
 
 	var login = sessionStorage.getItem('usuario');
@@ -58,6 +81,12 @@ function comprobarStorage(){
 		document.getElementById('menu_logout').innerHTML="";
 	}
 
+	var inde = window.location.href.split('/ind');
+
+	if(inde[1] == "ex.html"){
+		pedirEntradas();
+	}
+
 }
 
 function cerrarSesion(){
@@ -81,3 +110,96 @@ function buscar(frm){
 
 
 }
+
+
+function pedirEntradas(){
+
+	console.log('HE ENTRADO A PEDIR ENTRADAS')
+	let xhr = new XMLHttpRequest(),
+		url = 'rest/receta/?u=6';
+	var totalRecetas = 0;
+	xhr.open('GET',url, true);
+	xhr.onload = function(){
+		var recetas = JSON.parse(xhr.responseText);			
+		console.log(recetas);
+
+			ponerRecetas(recetas);
+
+			totalRecetas = document.getElementById('totalRecetas');
+		
+			totalRecetas.innerHTML = (recetas.FILAS.length)/6;
+			console.log('ENTROOOOOO');
+		
+
+		};
+
+		xhr.send();
+
+
+	}
+
+var recetasCreadas = 0; // numero de receras creadas hasta la fecha
+
+function ponerRecetas(recetas){
+
+	var recetas_a_mostrar = 6;
+	let todas = document.getElementById('visorRecetas');
+
+
+	for(let x =0 ; x<recetas_a_mostrar;x++){
+
+
+		//JSON
+
+		var titulo = recetas.FILAS[recetasCreadas].nombre,
+			autor  = recetas.FILAS[recetasCreadas].autor,
+			comentarios  = recetas.FILAS[recetasCreadas].comentarios,
+			pos  = recetas.FILAS[recetasCreadas].positivos,
+			neg  = recetas.FILAS[recetasCreadas].negativos,
+			foto   = recetas.FILAS[recetasCreadas].fichero,
+			desripcion  = recetas.FILAS[recetasCreadas].descripcion_foto,
+			fecha  = recetas.FILAS[recetasCreadas].fecha,
+			id  = recetas.FILAS[recetasCreadas].id;
+
+		//Codigo HTML
+
+		var articulo =
+
+			`<div>
+				<section>
+					<header>
+					<a href="receta.html?${id}" title=${titulo}>
+					<img src="fotos/${foto}" alt="${desripcion}">
+					<h3>${titulo}</h3>
+					</a>
+					</header>
+
+					<footer>
+						<p>
+						<span><a href="buscar.html?autor=${autor}">${autor}</span><br>
+						<time datetime="${fecha}">${fecha}</time><br>
+						<button><span class="icon-thumbs-up-alt"></span>34</button>
+						<button><span class="icon-thumbs-down-alt"></span>1</button>
+						<button><span class="icon-chat"></span>2</button>
+						</p>
+					</footer>
+
+				</section>
+			</div>`;
+
+
+
+			todas.innerHTML+= articulo;
+			recetasCreadas++;
+
+
+
+
+
+
+	}
+}
+
+	 
+
+	
