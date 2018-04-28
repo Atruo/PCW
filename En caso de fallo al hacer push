@@ -1,0 +1,8 @@
+find .git/objects/ -size 0 -exec rm -f {} \;
+
+git fetch origin
+
+
+
+After that I ran a git status, the repo was fine and there were my changes 
+(waiting to be committed, do it now..).
