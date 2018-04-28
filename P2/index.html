@@ -61,20 +61,15 @@
 
 	
 
-	
-</section>
-
 <div id="botonPag">
-<button>&lt;&lt;</button>
-<button>&lt;</button>
+<button id="izqMax" onclick="primeraPag();">&lt;&lt;</button>
+<button id="botonIzq" onclick="pincharBotonIzq();">&lt;</button>
 
 <div>
-	<span></span>
-	/
-	<span id="totalRecetas"></span>
+	<span id="paginaActual"></span>/<span id="totalRecetas"></span>
 </div>
-<button>></button>
-<button>>></button>
+<button id="botonDer" onclick="pincharBotonDer();">></button>
+<button id="derMax" onclick="ultimaPag();">>></button>
 </div>
 
 <footer id="pie">

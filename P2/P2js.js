@@ -1,4 +1,7 @@
 var recetas;
+var recetasCreadas = 0;  // numero de receras creadas hasta la fecha
+var numPagActual = 1;    //Numero de la pagina actual
+
 
 function hacerLogin(frm){
 
@@ -118,6 +121,7 @@ function pedirEntradas(){
 	let xhr = new XMLHttpRequest(),
 		url = 'rest/receta/?u=6';
 	var totalRecetas = 0;
+		
 	xhr.open('GET',url, true);
 	xhr.onload = function(){
 		var recetas = JSON.parse(xhr.responseText);			
@@ -126,8 +130,11 @@ function pedirEntradas(){
 			ponerRecetas(recetas);
 
 			totalRecetas = document.getElementById('totalRecetas');
-		
-			totalRecetas.innerHTML = (recetas.FILAS.length)/6;
+			paginaActual = document.getElementById('paginaActual');
+			
+
+			totalRecetas.innerHTML = Math.ceil((recetas.FILAS.length)/6); // redondeamos hacia arriba
+			botonesIndex(recetas.FILAS.length);
 			console.log('ENTROOOOOO');
 		
 
@@ -138,7 +145,7 @@ function pedirEntradas(){
 
 	}
 
-var recetasCreadas = 0; // numero de receras creadas hasta la fecha
+
 
 function ponerRecetas(recetas){
 
@@ -191,15 +198,75 @@ function ponerRecetas(recetas){
 
 			todas.innerHTML+= articulo;
 			recetasCreadas++;
-
-
-
-
-
+			console.log('Recetas Creadas: ' + recetasCreadas);
 
 	}
 }
 
+
+function botonesIndex(total){
+
+	var paginaActual = document.getElementById('paginaActual');
+
+	if(recetasCreadas<=6){
+
+		paginaActual.innerHTML = numPagActual;
+
+	}else{
+
+
+	}
+
+}
+
+
+// 4 funciones para los botones del index
+function pincharBotonDer(){
+
+	let botonDer = document.getElementById('paginaActual');
+	
+	
+
+
+	if(numPagActual<Math.ceil((recetasCreadas)/6)){
+		botonDer.innerHTML = (numPagActual+1);
+		numPagActual++;
+	}
+
+}
+
+function pincharBotonIzq(){
+
+	let botonIzq = document.getElementById('paginaActual');
+	
+
+
+	if(numPagActual>1){
+		botonIzq.innerHTML = (numPagActual-1);
+		numPagActual--;
+	}
+
+}
+
+function primeraPag(){
+
+	let pag = document.getElementById('paginaActual');
+
+	pag.innerHTML = 1;
+	paginaActual=1;
+
+}
+
+
+function ultimaPag(){
+
+	let pag = document.getElementById('paginaActual');
+
+	pag.innerHTML = Math.ceil((recetasCreadas)/6);
+	paginaActual=Math.ceil((recetasCreadas)/6);
+
+	
+}
 	 
 
 	
