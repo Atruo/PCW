@@ -136,7 +136,8 @@ function pedirRecetasB(para){
 function ponerRecetasB(recetasB){
 
 	var recetas_a_mostrar = recetasB.FILAS.length;
-	let todas = document.getElementById('resultadosBusqueda');
+	console.log('Numero de resultados: '+recetas_a_mostrar);
+	var todas = document.getElementById('resultadosBusqueda');
 
 
 	for(let x =0 ; x<recetas_a_mostrar;x++){
@@ -144,15 +145,15 @@ function ponerRecetasB(recetasB){
 
 		//JSON
 
-		var titulo = recetasB.FILAS[recetasCreadas].nombre,
-			autor  = recetasB.FILAS[recetasCreadas].autor,
-			comentarios  = recetasB.FILAS[recetasCreadas].comentarios,
-			pos  = recetasB.FILAS[recetasCreadas].positivos,
-			neg  = recetasB.FILAS[recetasCreadas].negativos,
-			foto   = recetasB.FILAS[recetasCreadas].fichero,
-			desripcion  = recetasB.FILAS[recetasCreadas].descripcion_foto,
-			fecha  = recetasB.FILAS[recetasCreadas].fecha,
-			id  = recetasB.FILAS[recetasCreadas].id;
+		var titulo = recetasB.FILAS[x].nombre,
+			autor  = recetasB.FILAS[x].autor,
+			comentarios  = recetasB.FILAS[x].comentarios,
+			pos  = recetasB.FILAS[x].positivos,
+			neg  = recetasB.FILAS[x].negativos,
+			foto   = recetasB.FILAS[x].fichero,
+			desripcion  = recetasB.FILAS[x].descripcion_foto,
+			fecha  = recetasB.FILAS[x].fecha,
+			id  = recetasB.FILAS[x].id;
 
 		//Codigo HTML
 
@@ -171,9 +172,9 @@ function ponerRecetasB(recetasB){
 						<p>
 						<span><a href="buscar.html?autor=${autor}">${autor}</span><br>
 						<time datetime="${fecha}">${fecha}</time><br>
-						<button><span class="icon-thumbs-up-alt"></span>34</button>
-						<button><span class="icon-thumbs-down-alt"></span>1</button>
-						<button><span class="icon-chat"></span>2</button>
+						<button><span class="icon-thumbs-up-alt"></span>${pos}</button>
+						<button><span class="icon-thumbs-down-alt"></span>${neg}</button>
+						<button><span class="icon-chat"></span>${comentarios}</button>
 						</p>
 					</footer>
 
@@ -261,12 +262,11 @@ function ponerRecetas(recetas){
 						<p>
 						<span><a href="buscar.html?autor=${autor}">${autor}</span><br>
 						<time datetime="${fecha}">${fecha}</time><br>
-						<button><span class="icon-thumbs-up-alt"></span>34</button>
-						<button><span class="icon-thumbs-down-alt"></span>1</button>
-						<button><span class="icon-chat"></span>2</button>
+						<button><span class="icon-thumbs-up-alt"></span>${pos}</button>
+						<button><span class="icon-thumbs-down-alt"></span>${neg}</button>
+						<button><span class="icon-chat"></span>${comentarios}</button>
 						</p>
 					</footer>
-
 				</section>
 			</div>`;
 
