@@ -99,22 +99,98 @@ function cerrarSesion(){
 
 function busquedaRapida(){
 
-	console.log('Entro en buscar');
-	location.href = "buscar.html";
+	//console.log('Entro en buscar');
+	let text = document.getElementById('textBR');
 
-
-
-
-
-
-}
-
-function buscar(frm){
-
+	
+	location.href = "buscar.html?"+text.value;
+	pedirRecetasB(text.value);
+	
+	
+	
 
 }
 
 
+
+//Pedir recetas para buscar
+function pedirRecetasB(para){
+
+	
+	let xhr = new XMLHttpRequest(),
+		url = 'rest/receta/?t='+para;
+	var totalRecetas = 0;
+		
+	xhr.open('GET',url, true);
+	xhr.onload = function(){
+		var recetasB = JSON.parse(xhr.responseText);			
+		
+
+			ponerRecetasB(recetasB);	
+
+		};
+
+		xhr.send();
+}
+
+function ponerRecetasB(recetasB){
+
+	var recetas_a_mostrar = recetasB.FILAS.length;
+	let todas = document.getElementById('resultadosBusqueda');
+
+
+	for(let x =0 ; x<recetas_a_mostrar;x++){
+
+
+		//JSON
+
+		var titulo = recetasB.FILAS[recetasCreadas].nombre,
+			autor  = recetasB.FILAS[recetasCreadas].autor,
+			comentarios  = recetasB.FILAS[recetasCreadas].comentarios,
+			pos  = recetasB.FILAS[recetasCreadas].positivos,
+			neg  = recetasB.FILAS[recetasCreadas].negativos,
+			foto   = recetasB.FILAS[recetasCreadas].fichero,
+			desripcion  = recetasB.FILAS[recetasCreadas].descripcion_foto,
+			fecha  = recetasB.FILAS[recetasCreadas].fecha,
+			id  = recetasB.FILAS[recetasCreadas].id;
+
+		//Codigo HTML
+
+		var articulo =
+
+			`<div>
+				<section>
+					<header>
+					<a href="receta.html?${id}" title=${titulo}>
+					<img src="fotos/${foto}" alt="${desripcion}">
+					<h3>${titulo}</h3>
+					</a>
+					</header>
+
+					<footer>
+						<p>
+						<span><a href="buscar.html?autor=${autor}">${autor}</span><br>
+						<time datetime="${fecha}">${fecha}</time><br>
+						<button><span class="icon-thumbs-up-alt"></span>34</button>
+						<button><span class="icon-thumbs-down-alt"></span>1</button>
+						<button><span class="icon-chat"></span>2</button>
+						</p>
+					</footer>
+
+				</section>
+			</div>`;
+
+
+
+			todas.innerHTML+= articulo;
+			
+			
+
+	}
+}
+
+
+//Pedir recetas para el INDEX
 function pedirEntradas(){
 
 	console.log('HE ENTRADO A PEDIR ENTRADAS')
