@@ -15,10 +15,17 @@
 
 	<section>
 		<h2>Canvas 0.1</h2>
-		<canvas></canvas>
-		<footer>
-			
-			<button onclick="pintarRectangulo();">rectangulo</button>
+		<canvas id="cv01"></canvas>
+		<footer>	
+			<div>
+				<label>Color borde: <input type="color" id="colorBorde" onchange="cambiarColorBorde();"></label><br>
+				<label>Color relleno: <input type="color" id="colorRelleno" onchange="cambiarColorRelleno();"></label>
+				<button onclick="limpiar();">Limpiar Canvas</button>
+			</div>		
+			<button onclick="pintarRect();">rectangulo</button>
+			<button onclick="pintarrRect();">Rellenar rect</button>
+			<button onclick="rellenarSombra();">Rellenar Sombra</button>
+			<button onclick="dibujarTexto();">Dibujar texto</button>
 		</footer>
 		
 	</section>
@@ -26,3 +33,5 @@
 		prepararCanvas();
 	</script>
 </body>
+
+</html>
