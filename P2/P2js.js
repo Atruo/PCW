@@ -509,10 +509,26 @@ function darReceta(){
 	console.log('ENTRO EN --DAR RECETA');
   var url = window.location.href;
   var id = url.split('.html?');
+  var mostrar;
+
+
+
   if(id[1]!=undefined)
   	{
-   
-   	 var mostrar = 'rest/receta/'+id[1];
+
+  		var url_string = window.location.href;
+  		var url = new URL(url_string);
+  		var user = url.searchParams.get("id");
+
+  		
+
+   		if(user!= 'undefined' && user!= null){
+   			let extraa = url_string.split('id=');
+
+   			mostrar = 'rest/receta/'+extraa[1];
+   		}else{
+   	  		mostrar = 'rest/receta/'+id[1];
+   		}
    	 
    	 pedirRecetasB(mostrar);
 	}
