@@ -12,7 +12,7 @@
 
 </head>
 
-<body onload="comprobarStorage();">
+<body onload="comprobarStorage(); compruebaUsuario(); ">
 	<header>
 
 		
@@ -47,28 +47,33 @@
 
 
 	
-	<form action="demo_form.asp" method="get" id="buscarForm">
+	<form action="buscar.html" id="buscarForm">
 
-			<p>Nombre <span><input type="text" name="Nombre"></span></p>
-			<p>Ingredientes: </p>
-
-			<p>Pollo <span><input type="checkbox" name="pollo"></span>
-			Lechuga <span><input type="checkbox" name="lechuga"></span>
-			Ajo <span><input type="checkbox" name="Ajo"></span>
-			Ketchup <span><input type="checkbox" name="pollo"></span></p>
-			<p>Número Comensales <span><input type="number" name="numero"></span></p>
-
-			<p>Dificultad 
-				<select>
+			<div>
+				<input type="search" name="busqueda" placeholder="Búsqueda por título...">			
 				
-				<option value="facil">Fácil</option>
-				<option value="medio">Medio</option>
-				<option value="dificil">Difcil</option>
+			</div>
 
-				</select></p>
+					<label class="tag" for="ingredientes">
+						Ingredientes:</label> <input id="ingredientes" type="text" name="ingredientes">
 
-			<button type="submit">Buscar</button>
-			
+					<label class="tag" for="tiempomin">
+						Tiempo min.:</label> <input id="tiempomin" type="number" min="0" name="tiempomin">
+					<label class="tag" for="tiempomax">
+						Tiempo max.:</label> <input id="tiempomax" type="number" min="0" name="tiempomax">
+
+					<label class="tag" for="dificultad">
+						Dificultad:</label> <input id="dificultad" type="text" name="dificultad">
+
+					<label class="tag" for="comensales">
+						Comensales:</label> <input id="comensales" type="text" name="comensales">
+
+					<label class="tag" for="autor">
+						Autor:</label> <input id="autor" type="text" name="autor">
+
+					<input type="reset" name="reset">
+				
+					<button  type="submit" name="submit" value="Buscar">Buscar</button>
 
 
 
