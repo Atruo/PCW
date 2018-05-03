@@ -45,22 +45,54 @@
 	</ul>
 </nav>
 	
+	
 
-<h3>Para registrarte tendrás que completar el siguiente formulario:</h3>
-<div id="formulario">
+		<div id="registroOK" style="display: none">Registro realizado exitosamente. Pulse continuar para iniciar sesion <a href="login.html"><button>Continuar</button></a></div>
 
-	<form action="demo_form.asp" method="get">
 
-<p>Login <span><input type="text" name="Login" autofocus required="" pattern="[A-Aa-z]{1}[A-Za-z0-9]{5,19}"></span></p>
-<p>Nombre <span><input type="text" name="Nombre" required></span></p>
-<p>Password <span><input type="password" name="Password" required pattern="[A-Za-z0-9_-]{8,20}"></span></p>
-<p>Password2 <span><input type="password" name="Password2" required pattern="[A-Za-z0-9_-]{8,20}"></span></p>
-<p>Email <span><input type="email" name="Email" required></span></p>
-<p>Fecha Nacimiento <span><input type="date" name="Fecha" required></span></p>
-<button type="submit">Registrar</button>
+			<div id="loginReg" class="card">
+				<form id="registroForm" onsubmit="return check(this);">
+					<h3>Registro de nuevo usuario</h3>
+					<div>
+						<label for="nickname">Login:</label>
+						<input type="text" name="login" id="nickname" pattern="^[^0-9][a-zA-Z0-9]{5,19}"
+									 onkeydown="return checkKey(event)"
+									 onchange="noSpace()"
+									 onkeyup="checkUser(this.value)" required>
+						<span id="usuarioStatus"></span>
+					</div>
 
-</form>
-</div>
+					<div>
+						<label for="usuario">Nombre:</label>
+						<input type="text" name="nombre" id="nombre" pattern="^[a-zA-Z0-9]{5,19}" required>
+					</div>
+					<div>
+						<label for="contrasena">Contraseña:</label>
+						<input type="password" name="pwd" id="contrasena" pattern="^[a-zA-Z0-9_-]{7,19}" required
+								onkeyup="getCon(this.value);" 
+						>
+					</div>
+					<div>
+						<label for="contrasena2">Repetir contraseña:</label>
+						<input type="password" name="pwd2" id="contrasena2" pattern="^[a-zA-Z0-9_-]{7,19}" required
+								onkeyup="coincidir()">
+						<span id="contrasenaDistinta"></span>
+					</div>
+					<div>
+						<label for="email">Email:</label>
+						<input type="email" name="email" id="email" required>
+					</div>
+					<div>
+						<label for="fecha">Fecha nacimiento:</label>
+						<input type="date" name="fnac" id="fecha" required>
+					</div>
+					<input type="submit" class="simple">
+				</form>
+			</div>
+
+
+
+
 <footer id="pie">
 		<p> &copy; HTMLocomo todos los derechos reservados 2018. <a href="acerca.html">Acerca</a> de nosotros 
 			<a href="#"><span class="icon-up"></span></a>

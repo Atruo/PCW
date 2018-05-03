@@ -821,3 +821,101 @@ function cerrarValOK(){
 
 	text.style.display = 'none'; 
 }
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//													REGISTRO
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function check(form) {
+  let fd = new FormData(form),
+  xhr = new XMLHttpRequest(),
+  url = './rest/usuario/';
+
+  xhr.open('POST', url, true);
+
+  xhr.onload = function(){
+  	console.log(xhr.responseText);
+  	let r = JSON.parse(xhr.responseText);
+
+  	if(r.RESULTADO=='OK'){
+        document.getElementById("registroForm").reset();
+        let r = document.getElementById('registroOK'),
+        	s = document.getElementById('loginReg');
+
+        r.style.display = 'block';
+        s.style.display = 'none';
+
+
+
+  		console.log(r);
+    }
+  }
+  xhr.send(fd);
+
+  return false;
+}
+
+function checkUser(value){
+  let xhr = new XMLHttpRequest(),
+  url = './rest/login/' + value;
+
+  xhr.open('GET', url, true);
+
+  xhr.onload = function(){
+    let r = JSON.parse(xhr.responseText);
+
+    if(r.RESULTADO=='OK'){
+      var texto = document.getElementById("usuarioStatus");
+        if(r.DISPONIBLE){
+          texto.innerHTML = "Usuario disponible";
+          texto.style.color = "#4BB543";
+        } else {
+          texto.innerHTML = "Usuario NO disponible";
+          texto.style.color = "#B22222";
+        }
+    } else {
+      document.getElementById("usuarioStatus").innerHTML = "";
+    }
+  }
+
+  xhr.send();
+
+  return false;
+}
+
+function checkKey(e){
+  if (e.which == 32)
+    return false;
+}
+
+function noSpace(){
+  var str = document.getElementById("nickname").value;
+  var res = str.replace(/\s/g, "");
+  document.getElementById("nickname").value = res;
+}
+
+var contras;
+function getCon(pass){
+	contras = pass;
+}
+function coincidir(){
+
+	let con2 = document.getElementById('contrasena2').value,
+		text = document.getElementById('contrasenaDistinta');
+		console.log(contras);
+		console.log(con2);
+
+		if(contras!=con2){
+			text.innerHTML= 'No coincide';
+			 text.style.color = "#B22222";
+		}else{
+			text.innerHTML= 'Coincide';
+			 text.style.color = "#4BB543";
+		}
+
+
+
+
+}
