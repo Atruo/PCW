@@ -186,8 +186,8 @@ function ponerRecetas(recetas){
 						<p>
 						<span><a href="buscar.html?autor=${autor}">${autor}</span><br>
 						<time datetime="${fecha}">${fecha}</time><br>
-						<button><span class="icon-thumbs-up-alt"></span>${pos}</button>
-						<button><span class="icon-thumbs-down-alt"></span>${neg}</button>
+						<button onclick="like();"><span class="icon-thumbs-up-alt"></span>${pos}</button>
+						<button onclick="dislike();"><span class="icon-thumbs-down-alt"></span>${neg}</button>
 						<button><span class="icon-chat"></span>${comentarios}</button>
 						</p>
 					</footer>
@@ -504,7 +504,12 @@ function build_params(data) {
 ////////////////////////////////////////////////////////////////////////////////////
 //										RECETA
 ////////////////////////////////////////////////////////////////////////////////////
-	 
+
+var id_global; // id de la receta a tratar
+var pos_global;
+var neg_global;
+var com_global;
+
 function darReceta(){
 	console.log('ENTRO EN --DAR RECETA');
   var url = window.location.href;
@@ -526,8 +531,10 @@ function darReceta(){
    			let extraa = url_string.split('id=');
 
    			mostrar = 'rest/receta/'+extraa[1];
+   			id_global = extraa[1];
    		}else{
    	  		mostrar = 'rest/receta/'+id[1];
+   	  		id_global = id[1];
    		}
    	 
    	 pedirRecetasB(mostrar);
@@ -563,7 +570,7 @@ function ponerRecetasB(recetasB){
 	let cab = document.getElementById('cabeceraRec');
 
 
-	for(let i =0 ; i<recetas_a_mostrar;i++){
+	for(var i =0 ; i<recetas_a_mostrar;i++){
 
 
 		//Codigo HTML
@@ -588,11 +595,8 @@ function ponerRecetasB(recetasB){
 					<h4 id="elaboracionRec">` + recetasB.FILAS[i].elaboracion + `</h4>
 					
 					<p>
-					<span><a href="buscar.html?autor=` + recetasB.FILAS[i].autor + `">` + recetasB.FILAS[i].autor + `</span><br>
+					<span><a href="buscar.html?autor=` + recetasB.FILAS[i].autor + `">` + recetasB.FILAS[i].autor + `</a></span><br>
 					<time datetime="` + recetasB.FILAS[i].fecha + `">` + recetasB.FILAS[i].fecha + `</time><br>
-					<button><span class="icon-thumbs-up-alt"></span>` + recetasB.FILAS[i].positivos + `</button>
-					<button><span class="icon-thumbs-down-alt"></span>` + recetasB.FILAS[i].negativos + `</button>
-					<button><span class="icon-chat"></span>` + recetasB.FILAS[i].comentarios + `</button>
 					</p>
 							
 				
@@ -609,11 +613,23 @@ function ponerRecetasB(recetasB){
 			
 
 	}
+
+	let pos = document.getElementById('textoLike'),
+		neg = document.getElementById('textoDislike'),
+		com = document.getElementById('textoComent');
+
+		pos.innerHTML= recetasB.FILAS[i-1].positivos;
+		neg.innerHTML= recetasB.FILAS[i-1].negativos;
+		com.innerHTML= recetasB.FILAS[i-1].comentarios;
+
+		pos_global = recetasB.FILAS[i-1].positivos;
+		neg_global = recetasB.FILAS[i-1].negativos;
+		com_global = recetasB.FILAS[i-1].comentarios;
 }
 
 function conseguirIngredientes(id){
 
-let xhr = new XMLHttpRequest();
+	let xhr = new XMLHttpRequest();
 		
 	let url = 'rest/receta/'+id+'/ingredientes';
 		
@@ -623,6 +639,7 @@ let xhr = new XMLHttpRequest();
 		
 
 			ponerIngredientes(ingredientes);	
+			conseguirComentarios(id);
 			
 
 		};
@@ -662,4 +679,145 @@ function ponerIngredientes(ingredientes){
 	}
 		ingredient= `<br><br>`
 		ing.innerHTML+= ingredient;
+}
+
+function conseguirComentarios(id){
+
+	let xhr = new XMLHttpRequest();
+		
+	let url = 'rest/receta/'+id+'/comentarios';
+		
+	xhr.open('GET',url, true);
+	xhr.onload = function(){
+		var comentarios = JSON.parse(xhr.responseText);			
+		
+
+			
+			ponerComentarios(comentarios);
+			
+
+		};
+
+		xhr.send();
+
+}
+function ponerComentarios(coments){
+
+	var recetas_a_mostrar = coments.FILAS.length;
+	let com = document.getElementById('coments');
+	
+
+
+	for(let i =0 ; i<recetas_a_mostrar;i++){
+
+
+		//Codigo HTML
+
+		var comentarios =
+
+			`	
+				<a>
+				<h5 title="`+coments.FILAS[i].titulo+`">`+coments.FILAS[i].autor+` -- `+coments.FILAS[i].fecha+`</h5> 
+				</a>
+				<h4>`+coments.FILAS[i].titulo+`</h4>
+				<p id="comentarios">`+coments.FILAS[i].texto+`</p>
+			 `;
+		
+
+
+
+			com.innerHTML+= comentarios;
+			
+			
+			
+			
+
+	}
+		
+}
+function like(){
+
+
+  let xhr = new XMLHttpRequest(),
+  	fd  = new FormData(),
+	url = 'rest/receta/' + id_global + '/voto/1',
+  	usu;
+
+  if(xhr){
+
+    usu = JSON.parse(sessionStorage.getItem('usuario'));
+
+    fd.append('l',usu.login);
+
+    xhr.open('POST', url, true);
+    xhr.onload = function(){
+  	   console.log(xhr.responseText);
+
+       let r = JSON.parse(xhr.responseText);
+
+     	 if(r.RESULTADO == "OK"){
+        	//actualiza();
+        	let pos = document.getElementById('textoLike');
+        	let text = document.getElementById('valoracionOK');
+
+        	pos_global++;
+       		pos.innerHTML=(pos_global);
+
+       		text.style.display = 'block'; 
+    		
+
+       } else {
+         //mostrarModal("03");
+       }
+    }
+    xhr.setRequestHeader('Authorization', usu.clave);
+    xhr.send(fd);
+  }
+}
+function dislike(){
+
+
+  let xhr = new XMLHttpRequest(),
+  	fd  = new FormData(),
+	url = 'rest/receta/' + id_global + '/voto/0',
+  	usu;
+
+  if(xhr){
+
+    usu = JSON.parse(sessionStorage.getItem('usuario'));
+
+    fd.append('l',usu.login);
+
+    xhr.open('POST', url, true);
+    xhr.onload = function(){
+  	   console.log(xhr.responseText);
+
+       let r = JSON.parse(xhr.responseText);
+
+     	 if(r.RESULTADO == "OK"){
+        	//actualiza();
+        	let pos = document.getElementById('textoDislike');
+        	let text = document.getElementById('valoracionOK');
+
+        	neg_global++;
+       		pos.innerHTML=(neg_global);
+
+       		text.style.display = 'block'; 
+    		
+
+       } else {
+         //mostrarModal("03");
+       }
+    }
+    xhr.setRequestHeader('Authorization', usu.clave);
+    xhr.send(fd);
+  }
+}
+
+function cerrarValOK(){
+
+
+	let text = document.getElementById('valoracionOK');
+
+	text.style.display = 'none'; 
 }

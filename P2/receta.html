@@ -51,6 +51,12 @@
 <div id="ingredientesRec"></div>
 <div id="elaboracionRec"></div>
 
+<button onclick="like();" id="bLike"><span class="icon-thumbs-up-alt"></span><span id="textoLike"></span></button>
+<button onclick="dislike();" id="bDislike"><span class="icon-thumbs-down-alt"></span><span id="textoDislike"></span></button>
+<button><span class="icon-chat" id="bComents"></span><span id="textoComent"></span></button>
+<br>
+<div id="valoracionOK" style="display: none;">Valoración enviada correctamente <button onclick="cerrarValOK();">Cerrar</button></div>
+
 
 
 
@@ -80,41 +86,10 @@
 
 	</form>
 <h2>Comentarios:</h2>
-	<section id="coments">
+	
+<section id="coments"></section>
 		
-		<a>
-		<h5 title="Pepe">Pepe -- lunes, 25/09/2007, 09:32h</h5> 
-	</a>
-		<h4>Muy bueno!</h4>
-		<p id="comentarios">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta voluptatibus aperiam modi labore aliquid dolorum amet officia itaque molestiae repellat. Possimus mollitia, ea eius atque illum commodi praesentium nulla natus consectetur ipsa maiores, libero magni sit nihil ab repudiandae. Atque distinctio officia, praesentium fugit accusantium debitis, at. Deleniti, quibusdam pariatur!</p>
-		<footer>
-
-			<p><button><span class="icon-thumbs-up-alt"></span>34</button></p>
-			<p><button><span class="icon-thumbs-down-alt"></span>1</button></p>
-		</footer>
 		
-
-		
-			<a >
-		<h5 title="Loreto">Loreto -- lunes, 25/09/2007, 09:32h</h5></a>
-		<h4>Muy malo!</h4>
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta voluptatibus aperiam modi labore aliquid dolorum amet officia itaque molestiae repellat. Possimus mollitia, ea eius atque illum commodi praesentium nulla natus consectetur ipsa maiores, libero magni sit nihil ab repudiandae. Atque distinctio officia, praesentium fugit accusantium debitis, at. Deleniti, quibusdam pariatur!</p>
-		<footer>
-
-			<p><button><span class="icon-thumbs-up-alt"></span>100</button></p>
-			<p><button><span class="icon-thumbs-down-alt"></span>20</button></p>
-		</footer>
-
-		<div id="botonPag">
-<button>&lt;</button>
-<button>&lt;</button>
-1/1
-<button>></button>
-<button>>></button>
-</div>
-
-	</section>
-
 <footer id="pie">
 		<p> &copy; HTMLocomo todos los derechos reservados 2018. <a href="acerca.html">Acerca</a> de nosotros 
 			<a href="#"><span class="icon-up"></span></a>
