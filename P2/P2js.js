@@ -175,22 +175,27 @@ function ponerRecetas(recetas){
 
 			`<div>
 				<section>
-					<header>
+					
 					<a href="receta.html?${id}" title=${titulo}>
-					<img src="fotos/${foto}" alt="${desripcion}">
-					<h3>${titulo}</h3>
+						<img src="fotos/${foto}" alt="${desripcion}">
 					</a>
-					</header>
+					<div>
+					<a href="receta.html?${id}" title=${titulo}>
+						<h3>${titulo}</h3>
+					</a>
+					
+					
 
-					<footer>
-						<p>
-						<span><a href="buscar.html?autor=${autor}">${autor}</span><br>
-						<time datetime="${fecha}">${fecha}</time><br>
-						<button onclick="like();"><span class="icon-thumbs-up-alt"></span>${pos}</button>
-						<button onclick="dislike();"><span class="icon-thumbs-down-alt"></span>${neg}</button>
-						<button><span class="icon-chat"></span>${comentarios}</button>
-						</p>
-					</footer>
+						<footer>
+							<p>
+								<span><a href="buscar.html?autor=${autor}">${autor}</a></span><br>
+								<time datetime="${fecha}">${fecha}</time><br>
+								<button onclick="like();"><span class="icon-thumbs-up-alt"></span>${pos}</button>
+								<button onclick="dislike();"><span class="icon-thumbs-down-alt"></span>${neg}</button>
+								<button><span class="icon-chat"></span>${comentarios}</button>
+							</p>
+						</footer>
+					</div>
 
 				</section>
 			</div>`;
@@ -306,22 +311,30 @@ function compruebaUsuario() {
             docu.innerHTML +=
            `<div>
 				<section>
-					<header>
+					
 					<a href="receta.html?id=`+data.FILAS[i].id+ `" title=`+data.FILAS[i].nombre+`>
-					<img src="fotos/`+data.FILAS[i].fichero+`" alt="` + data.FILAS[i].nombre + `">
-					<h3>`+data.FILAS[i].nombre+`</h3>
+						<img src="fotos/`+data.FILAS[i].fichero+`" alt="` + data.FILAS[i].nombre + `">
 					</a>
-					</header>
+					<div>
+					<a href="receta.html?id=`+data.FILAS[i].id+ `" title=`+data.FILAS[i].nombre+`>
+						<h3>`+data.FILAS[i].nombre+`</h3>
+					</a>
+					
+					
 
-					<footer>
-						<p>
-						<span><a href="buscar.html?autor=` + data.FILAS[i].autor + `">` + data.FILAS[i].autor + `</span><br>
-						<time datetime="` + data.FILAS[i].fecha + `">` + data.FILAS[i].fecha + `</time><br>
-						<button><span class="icon-thumbs-up-alt"></span>` + data.FILAS[i].positivos + `</button>
-						<button><span class="icon-thumbs-down-alt"></span>` + data.FILAS[i].negativos + `</button>
-						<button><span class="icon-chat"></span>` + data.FILAS[i].comentarios + `</button>
-						</p>
-					</footer>
+						<footer>
+							<p>
+								<span>
+									<a href="buscar.html?autor=` + data.FILAS[i].autor + `">` + data.FILAS[i].autor + `
+									</a>
+								</span><br>
+								<time datetime="` + data.FILAS[i].fecha + `">` + data.FILAS[i].fecha + `</time><br>
+								<button onclick="like();"><span class="icon-thumbs-up-alt"></span>` + data.FILAS[i].positivos + `</button>
+								<button onclick="dislike();"><span class="icon-thumbs-down-alt"></span>` + data.FILAS[i].negativos + `</button>
+								<button><span class="icon-chat"></span>` + data.FILAS[i].comentarios + `</button>
+							</p>
+						</footer>
+					</div>
 
 				</section>
 			</div>`;
@@ -434,28 +447,36 @@ function compruebaUsuario() {
               for(i=0;i<4;i++)
               {
                 cont.innerHTML +=
-               `<div>
-				<section>
-					<header>
-					<a href="receta.html?id=`+search.FILAS[i].id+ `" title=`+search.FILAS[i].nombre+`>
-					<img src="fotos/`+search.FILAS[i].fichero+`" alt="` + search.FILAS[i].nombre + `">
-					<h3>`+search.FILAS[i].nombre+`</h3>
-					</a>
-					</header>
 
-					<footer>
-						<p>
-						<span><a href="buscar.html?autor=` + search.FILAS[i].autor + `">` + search.FILAS[i].autor + `</span><br>
-						<time datetime="` + search.FILAS[i].fecha + `">` + search.FILAS[i].fecha + `</time><br>
-						<button><span class="icon-thumbs-up-alt"></span>` + search.FILAS[i].positivos + `</button>
-						<button><span class="icon-thumbs-down-alt"></span>` + search.FILAS[i].negativos + `</button>
-						<button><span class="icon-chat"></span>` + search.FILAS[i].comentarios + `</button>
-						</p>
-					</footer>
+                `<div>
+				<section>
+					
+					<a href="receta.html?id=`+search.FILAS[i].id+ `" title=`+search.FILAS[i].nombre+`>
+						<img src="fotos/`+search.FILAS[i].fichero+`" alt="` + search.FILAS[i].nombre + `">
+					</a>
+					<div>
+					<a href="receta.html?id=`+search.FILAS[i].id+ `" title=`+search.FILAS[i].nombre+`>
+						<h3>`+search.FILAS[i].nombre+`</h3>
+					</a>
+					
+					
+
+						<footer>
+							<p>
+								<span>
+									<a href="buscar.html?autor=` + search.FILAS[i].autor + `">` + search.FILAS[i].autor + `
+									</a>
+								</span><br>
+								<time datetime="` + search.FILAS[i].fecha + `">` + search.FILAS[i].fecha + `</time><br>
+								<button onclick="like();"><span class="icon-thumbs-up-alt"></span>` + search.FILAS[i].positivos + `</button>
+								<button onclick="dislike();"><span class="icon-thumbs-down-alt"></span>` + search.FILAS[i].negativos + `</button>
+								<button><span class="icon-chat"></span>` + search.FILAS[i].comentarios + `</button>
+							</p>
+						</footer>
+					</div>
 
 				</section>
 			</div>`;
-;
 
               }
               // paginacion
