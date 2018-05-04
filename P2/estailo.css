@@ -288,7 +288,31 @@ body>footer{
 background-color: #507FE9;
 }
 /* ------------------------------------------BUSCAR------------------------------------- */
+#resultadosBusqueda>div{
+	width: 100%;
 
+}
+#resultadosBusqueda>div>section{
+	
+	background-color: #FFEBB6;
+	width: 100%;
+	float: left;
+	padding: 20px 20px;
+	box-sizing: border-box;
+	margin: .5em;
+	display: inline-block;
+
+}
+
+#resultadosBusqueda>div>section>a>img{
+	width: 100%;
+	height: 18em;
+	
+}
+#resultadosBusqueda>div>section>div{
+
+	background-color: #F1CE5D;
+}
 
 
 #buscarForm>p:hover{

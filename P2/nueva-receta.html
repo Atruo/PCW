@@ -47,44 +47,92 @@
 </nav>
 
 	
-	<h2>Añade una receta</h2>
+	<div id="nuevareceta" class="card">
+		<h3>Añadir nueva receta</h3>
+		<div>
+			<form id="nuevaRecetaForm" onsubmit="return mandarReceta(this);">
+				<div>
+					<label for="titulo">Titulo: </label><input required id="titulo" name="titulo" type="text">
+				</div>
+				<div>
+					<label for="elaboracion">Elaboracion: </label><textarea required name="elaboracion" id="elaboracion" cols="30" rows="10" maxlength="250"></textarea>
+				</div>
+				<div>
+					<label for="comensales">Comensales: </label><input required id="comensales" name="comensales" min="0" type="number">
+				</div>
+				<div>
+					<label for="tiempo">Tiempo (min): </label><input required id="tiempo" name="tiempo" min="0" type="number">
+				</div>
+				<div>
+					<label for="dificultad">Dificultad</label>
+						<select name="dificultad" id="dificultad">
+							<option value="baja">Baja</option>
+							<option value="media">Media</option>
+							<option value="alta">Alta</option>
+						</select>
+				</div>
 
-	<form action="demo_form.asp" method="get" id="newReceta">
+				<div>
+					<label>Ingredientes:</label>
+					<ul id="ingredientes" contenteditable="true" required></ul>
 
-		<p>Nombre: <span><input type="text" name="Nombre" maxlength="200" required="" autofocus=""></span></p>
-		<p>Número Comensales: <span><input type="number" name="numero" required=""></span></p>
-		<p>Tiempo de duración: <span><input type="number" name="tiempo" required=""></span></p>
-		<p>Dificultad: 
-				<select>
+
+		      <input type="text" name="ingrediente" id="ingrediente" placeholder="Escribe tus ingredientes"/>
+		      <button type="button" onclick="addIngrediente(ingrediente)">Agregar</button>
+
+
+				</div>​
+
+		</div>
+		<h4>Fotos de la receta</h4>
+		
+			<!-- Modal Content -->
+			<div class="card" id="tam3k" style="display: none;">
 				
-				<option value="facil">Fácil</option>
-				<option value="medio">Medio</option>
-				<option value="dificil">Difcil</option>
+				<p>El tamaño de la imagen debe ser menor de 300Kb</p>
+				<button onclick="quitarMensajeNew();">Aceptar</button>
+			</div>
+		
+		
+		<button type="button" onclick="addFoto()">Añadir foto</button>
 
-				</select></p>
-				<p>Ingredientes: </p>
+				<div id="fotosReceta">
+
+				</div>
+
+				<br>
+				<div>
+					<input type="submit">
+				</div>
+
+			</form>
+		</div>
+	</div>
+
+	<!-- Modal Content -->
+			<div class="card" id="id02" style="display: none;">
 				
-				<input type="text" id="myInput" placeholder="Ingrediente...">
-  				<button onclick="newElement()">Add</button>
+				<p>Debes añadir al menos una foto</p>
+				<button onclick="quitarMensajeNew();">Aceptar</button>
+			</div>
 
-
-			<p>Elaboración:</p>
-		<textarea rows="4" cols="50" required=""></textarea><br>
-
-		<p>Selecciona una imagen o sube tú una: </p>
-		<img src="pollo.jpg" alt="1">
-		<img src="pollo.jpg" alt="1">
-		<img src="pollo.jpg" alt="1"><br>
-		<p>Descripción: </p>
-		<textarea rows="4" cols="50" required=""></textarea><br>
-
-		<button type="button"> Subir</button> <button type="button">Borrar</button><br><br><br><br>
-
-		<button type="submit" >Publicar</button>
+	<!-- Modal Content -->
+			<div class="card" id="id04" style="display: none;">
+				
+				<p>Debes añadir algún ingrediente a la receta</p>
+				<button onclick="quitarMensajeNew();">Aceptar</button>
+			</div>
 
 
 
-	</form>
+
+	<!-- Modal Content -->
+			<div class="card" id="recetaNew" style="display: none;">
+				
+				<p>Receta creada con éxito, probablemente la imagen no se pueda visualizar</p>
+				<button onclick="quitarMensajeNew();">Aceptar</button>
+			</div>
+	<footer>
 
 
 	<footer id="pie">
