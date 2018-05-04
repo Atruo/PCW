@@ -1,6 +1,7 @@
 var recetas;
-var recetasCreadas = 0;  // numero de receras creadas hasta la fecha
+var totalRecetasTOT = 6;  // numero de receras creadas hasta la fecha
 var numPagActual = 1;    //Numero de la pagina actual
+var idActual = 0;    // ultima receta mostrada
 
 
 function hacerLogin(frm){
@@ -113,14 +114,14 @@ function busquedaRapida(){
 
 
 
-
+var largo;
 
 //Pedir recetas para el INDEX
 function pedirEntradas(){
 
 	console.log('HE ENTRADO A PEDIR ENTRADAS')
 	let xhr = new XMLHttpRequest(),
-		url = 'rest/receta/?u=6';
+		url = 'rest/receta/?u=50';
 	var totalRecetas = 0;
 		
 	xhr.open('GET',url, true);
@@ -130,12 +131,11 @@ function pedirEntradas(){
 
 			ponerRecetas(recetas);
 
-			totalRecetas = document.getElementById('totalRecetas');
-			paginaActual = document.getElementById('paginaActual');
-			
+		
 
-			totalRecetas.innerHTML = Math.ceil((recetas.FILAS.length)/6); // redondeamos hacia arriba
-			botonesIndex(recetas.FILAS.length);
+			
+			botonesIndex(recetas);
+			largo=recetas;
 			console.log('ENTROOOOOO');
 		
 
@@ -148,26 +148,31 @@ function pedirEntradas(){
 
 
 
+	
+
 function ponerRecetas(recetas){
+	var recetas_a_mostrar = recetas.FILAS.length;
+	
+	let todas = document.getElementById('visorRecetas1');
+	let todas2 = document.getElementById('visorRecetas2');
+	let todas3 = document.getElementById('visorRecetas3');
+	
 
-	var recetas_a_mostrar = 6;
-	let todas = document.getElementById('visorRecetas');
 
-
-	for(let x =0 ; x<recetas_a_mostrar;x++){
+	for(var x=0; x<recetas_a_mostrar;x++){
 
 
 		//JSON
 
-		var titulo = recetas.FILAS[recetasCreadas].nombre,
-			autor  = recetas.FILAS[recetasCreadas].autor,
-			comentarios  = recetas.FILAS[recetasCreadas].comentarios,
-			pos  = recetas.FILAS[recetasCreadas].positivos,
-			neg  = recetas.FILAS[recetasCreadas].negativos,
-			foto   = recetas.FILAS[recetasCreadas].fichero,
-			desripcion  = recetas.FILAS[recetasCreadas].descripcion_foto,
-			fecha  = recetas.FILAS[recetasCreadas].fecha,
-			id  = recetas.FILAS[recetasCreadas].id;
+		var titulo = recetas.FILAS[x].nombre,
+			autor  = recetas.FILAS[x].autor,
+			comentarios  = recetas.FILAS[x].comentarios,
+			pos  = recetas.FILAS[x].positivos,
+			neg  = recetas.FILAS[x].negativos,
+			foto   = recetas.FILAS[x].fichero,
+			desripcion  = recetas.FILAS[x].descripcion_foto,
+			fecha  = recetas.FILAS[x].fecha,
+			id  = recetas.FILAS[x].id;
 
 		//Codigo HTML
 
@@ -202,32 +207,101 @@ function ponerRecetas(recetas){
 
 
 			if(articulo!=null){
-			todas.innerHTML+= articulo;
-			recetasCreadas++;
-			console.log('Recetas Creadas: ' + recetasCreadas);
+
+				if(x<6){
+					todas.innerHTML+= articulo;
+				}else if(x>=6&&x<13){
+						todas2.innerHTML+= articulo;
+					}else{
+						todas3.innerHTML+= articulo;
+					}
+
+
+
+
 			}
 
+
 	}
+
+
+
+	if(x%2!=0){
+
+			articulo =
+			`<div>
+				<section>
+					
+					<a href="receta.html?" title=>
+						<img src="fotos/noReceta.jpg" alt="">
+					</a>
+					<div>
+					
+						<h3>No hay más recetas</h3>
+					
+					
+					
+
+						<footer>
+							<p>
+								<span><a href="buscar.html?autor=""></a></span>None<br>
+								<time datetime="">None</time><br>
+								<span>None</span><br><br>
+								<button onclick="like();"><span class="icon-thumbs-up-alt">0</span></button>
+								<button onclick="dislike();"><span class="icon-thumbs-down-alt">0</span></button>
+								<button><span class="icon-chat">0</span></button>
+							</p>
+						</footer>
+					</div>
+
+				</section>
+			</div>`
+
+			
+
+				if(x<6){
+					todas.innerHTML+= articulo;
+				}else if(x>=6&&x<13){
+						todas2.innerHTML+= articulo;
+					}else{
+						todas3.innerHTML+= articulo;
+					}
+
+			}
+
+
+
+
+
+			
+
+	
+	console.log('IDactual: '+idActual);
 }
 
 
 function botonesIndex(total){
 
+
 	var paginaActual = document.getElementById('paginaActual');
+	let r = document.getElementById('totalRecetas');
 
-	if(recetasCreadas<=6){
+	totalRecetasTOT = total.FILAS.length;
+	r.innerHTML = Math.ceil((total.FILAS.length)/6);
+	paginaActual.innerHTML = numPagActual;
+	
 
-		paginaActual.innerHTML = numPagActual;
 
-	}else{
-
-
-	}
+	
 
 }
 
 
 // 4 funciones para los botones del index
+var clickDer =0;
+
+
+;
 function pincharBotonDer(){
 
 	let botonDer = document.getElementById('paginaActual');
@@ -235,9 +309,25 @@ function pincharBotonDer(){
 	
 
 
-	if(numPagActual<Math.ceil((recetasCreadas)/6)){
+	if(numPagActual<Math.ceil((totalRecetasTOT)/6)){
 		botonDer.innerHTML = (numPagActual+1);
 		numPagActual++;
+		let y = document.getElementById('visorRecetas3');
+		let r = document.getElementById('visorRecetas2');
+		let s = document.getElementById('visorRecetas1');
+		if(clickDer==0){
+			r.style.display = 'block';
+			s.style.display = 'none';
+
+
+		}else{
+			r.style.display = 'none';
+			y.style.display = 'block';
+		}
+		
+		clickDer++;
+		
+
 	}
 
 }
@@ -251,6 +341,18 @@ function pincharBotonIzq(){
 	if(numPagActual>1){
 		botonIzq.innerHTML = (numPagActual-1);
 		numPagActual--;
+		
+		let r = document.getElementById('visorRecetas1');
+		let s = document.getElementById('visorRecetas2');
+		let y = document.getElementById('visorRecetas3');
+		if(clickDer==1){
+			r.style.display = 'block';
+			s.style.display = 'none';
+		}else{
+			s.style.display = 'block';
+			y.style.display = 'none'
+		}
+		clickDer--;
 	}
 
 }
@@ -262,6 +364,16 @@ function primeraPag(){
 	pag.innerHTML = 1;
 	paginaActual=1;
 
+	let r = document.getElementById('visorRecetas1');
+	let s = document.getElementById('visorRecetas2');
+	let y = document.getElementById('visorRecetas3');
+
+		s.style.display = 'none';
+		y.style.display = 'none';
+		r.style.display = 'block';
+		botonDer=0;
+
+
 }
 
 
@@ -269,11 +381,30 @@ function ultimaPag(){
 
 	let pag = document.getElementById('paginaActual');
 
-	pag.innerHTML = Math.ceil((recetasCreadas)/6);
-	paginaActual=Math.ceil((recetasCreadas)/6);
+
+	pag.innerHTML = Math.ceil((totalRecetasTOT)/6);
+	paginaActual=Math.ceil((totalRecetasTOT)/6);
+
+	let r = document.getElementById('visorRecetas1');
+	let s = document.getElementById('visorRecetas2');
+	let y = document.getElementById('visorRecetas3');
+
+	if(Math.ceil((totalRecetasTOT)/6)==3){
+		s.style.display = 'none';
+		y.style.display = 'block';
+		r.style.display = 'none';
+		botonDer=2;
+
+	}else{
+		s.style.display = 'block';
+		y.style.display = 'none';
+		r.style.display = 'none';
+		botonDer=1;
+	}
 
 	
 }
+
 
 /////////////////////////////////////////////////////////////////////////
 //								BUSCAR
@@ -446,6 +577,7 @@ function compruebaUsuario() {
               var i;
               for(i=0;i<4;i++)
               {
+              	if(search.FILAS[i]!=undefined){
                 cont.innerHTML +=
 
                 `<div>
@@ -479,10 +611,11 @@ function compruebaUsuario() {
 			</div>`;
 
               }
+             }
               // paginacion
               console.log("tot:");
               console.log(search.TOTAL_COINCIDENCIAS);
-              paginacion(search.TOTAL_COINCIDENCIAS,4);
+              
             }
             else{
               // No resultados
@@ -1119,9 +1252,12 @@ function mandarReceta(form){
                list.removeChild(list.childNodes[0]);
              }
              let rrr = document.getElementById('recetaNew');
-            	 rrr.style.color = "#15F21A";
+            	rrr.style.color = "#15F21A";
   				rrr.style.display = 'block';
-           } else {
+  				
+  				
+
+           }else {
                mostrarModal("03");
            }
         }

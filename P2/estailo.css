@@ -145,11 +145,11 @@ body>nav{
 
 
 /* Articulos */
-#visorRecetas>div{
+#visorRecetas1>div{
 	width: 100%;
 
 }
-#visorRecetas>div>section{
+#visorRecetas1>div>section{
 	
 	background-color: #FFEBB6;
 	width: 100%;
@@ -161,12 +161,63 @@ body>nav{
 
 }
 
-#visorRecetas>div>section>a>img{
+#visorRecetas1>div>section>a>img{
 	width: 100%;
 	height: 18em;
 	
 }
-#visorRecetas>div>section>div{
+#visorRecetas1>div>section>div{
+
+	background-color: #F1CE5D;
+}
+#visorRecetas2>div{
+	width: 100%;
+
+}
+#visorRecetas2>div>section{
+	
+	background-color: #FFEBB6;
+	width: 100%;
+	float: left;
+	padding: 20px 20px;
+	box-sizing: border-box;
+	margin: .5em;
+	display: inline-block;
+
+}
+
+#visorRecetas2>div>section>a>img{
+	width: 100%;
+	height: 18em;
+	
+}
+#visorRecetas2>div>section>div{
+
+	background-color: #F1CE5D;
+}
+
+#visorRecetas3>div{
+	width: 100%;
+
+}
+#visorRecetas3>div>section{
+	
+	background-color: #FFEBB6;
+	width: 100%;
+	float: left;
+	padding: 20px 20px;
+	box-sizing: border-box;
+	margin: .5em;
+	display: inline-block;
+
+}
+
+#visorRecetas3>div>section>a>img{
+	width: 100%;
+	height: 18em;
+	
+}
+#visorRecetas3>div>section>div{
 
 	background-color: #F1CE5D;
 }
@@ -456,13 +507,27 @@ background-color: #507FE9;
 			display: inline;
 		}
 
-		#visorRecetas>div{
+		#visorRecetas1>div{
 			width: 100%;
 		}
-		#visorRecetas>div>section{
+		#visorRecetas1>div>section{
 			width: 48%;
 		}
 
+
+		#visorRecetas2>div{
+			width: 100%;
+		}
+		#visorRecetas2>div>section{
+			width: 48%;
+		}
+
+		#visorRecetas3>div{
+			width: 100%;
+		}
+		#visorRecetas3>div>section{
+			width: 48%;
+		}
 		#resultadosBusqueda>div{
 			width: 100%;
 		}
