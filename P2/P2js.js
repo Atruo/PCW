@@ -237,7 +237,8 @@ function ponerRecetas(recetas){
 					</a>
 					<div>
 					
-						<h3>No hay más recetas</h3>
+						<h3>No hay más recetas - No hay más recetas -  No hay más recetas</h3>
+						
 					
 					
 					
@@ -246,7 +247,7 @@ function ponerRecetas(recetas){
 							<p>
 								<span><a href="buscar.html?autor=""></a></span>None<br>
 								<time datetime="">None</time><br>
-								<span>None</span><br><br>
+								
 								<button onclick="like();"><span class="icon-thumbs-up-alt">0</span></button>
 								<button onclick="dislike();"><span class="icon-thumbs-down-alt">0</span></button>
 								<button><span class="icon-chat">0</span></button>
