@@ -1124,11 +1124,11 @@ function addFoto(){
 
   div.innerHTML +=
   `
-  <p><button onclick="cerrarFicha(` + id + `)" class="icon-cancel"></button></p>
+  <p><button onclick="cerrarFicha(` + id + `)" class="icon-cancel">Quitar</button></p>
   <input onchange="getImg(this)" required id="` + contador + `" type="file" name="foto" accept="image/*">
 
   <p>Foto:</p>
-  <img id="img` + contador + `" type="file" onclick="getImg(this)" accept="image/*()" src="fotos/15.png" alt="noimagen" style="cursor: pointer">
+  <img id="img` + contador + `" type="file" onclick="getImg(this)" accept="image/*()" src="fotos/no-photo.png" alt="noimagen" style="cursor: pointer">
 
   <p>Descripción: </p>
   <textarea id="descripcion` + contador + `" name="descripcion` + contador + `" cols="30" rows="4"></textarea>
