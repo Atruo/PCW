@@ -46,10 +46,10 @@
 	</ul>
 </nav>
 
-	
+	<h3>Añadir nueva receta</h3>
 	<div id="nuevareceta" class="card">
-		<h3>Añadir nueva receta</h3>
-		<div>
+		
+		<div id="nuevarecetaX">
 			<form id="nuevaRecetaForm" onsubmit="return mandarReceta(this);">
 				<div>
 					<label for="titulo">Titulo: </label><input required id="titulo" name="titulo" type="text">
@@ -64,7 +64,7 @@
 					<label for="tiempo">Tiempo (min): </label><input required id="tiempo" name="tiempo" min="0" type="number">
 				</div>
 				<div>
-					<label for="dificultad">Dificultad</label>
+					<label for="dificultad">Dificultad: </label>
 						<select name="dificultad" id="dificultad">
 							<option value="baja">Baja</option>
 							<option value="media">Media</option>

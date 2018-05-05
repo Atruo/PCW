@@ -520,6 +520,12 @@ background-color: #507FE9;
 		color: #000000;
 
 	}
+#nuevaRecetaForm>div{
+
+	width: 10em;
+	margin-top: 1em;
+	margin-left: 1em;
+}
 	/* --------------------------------------------Media---------------------------------------  */
 
 	
