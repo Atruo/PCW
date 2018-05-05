@@ -186,7 +186,7 @@ function ponerRecetas(recetas){
 					</a>
 					<div>
 					<a href="receta.html?${id}" title=${titulo}>
-						<h3>${titulo}</h3>
+						<h3 title="${titulo}"">${titulo}</h3>
 					</a>
 					
 					
@@ -237,7 +237,7 @@ function ponerRecetas(recetas){
 					</a>
 					<div>
 					
-						<h3>No hay más recetas - No hay más recetas -  No hay más recetas</h3>
+						<h3>No hay más recetas</h3>
 						
 					
 					
@@ -449,7 +449,7 @@ function compruebaUsuario() {
 					</a>
 					<div>
 					<a href="receta.html?id=`+data.FILAS[i].id+ `" title=`+data.FILAS[i].nombre+`>
-						<h3>`+data.FILAS[i].nombre+`</h3>
+						<h3 title="`+data.FILAS[i].nombre+`">`+data.FILAS[i].nombre+`</h3>
 					</a>
 					
 					
@@ -589,7 +589,7 @@ function compruebaUsuario() {
 					</a>
 					<div>
 					<a href="receta.html?id=`+search.FILAS[i].id+ `" title=`+search.FILAS[i].nombre+`>
-						<h3>`+search.FILAS[i].nombre+`</h3>
+						<h3 title="`+search.FILAS[i].nombre+`">`+search.FILAS[i].nombre+`</h3>
 					</a>
 					
 					
@@ -722,7 +722,7 @@ function ponerRecetasB(recetasB){
 
 	var recetas_a_mostrar = recetasB.FILAS.length;
 	let ela = document.getElementById('elaboracionRec');
-	let cab = document.getElementById('cabeceraRec');
+	let cab = document.getElementById('arribaRec');
 
 
 	for(var i =0 ; i<recetas_a_mostrar;i++){
@@ -735,10 +735,10 @@ function ponerRecetasB(recetasB){
 			 `<div>
 				
 					<header>
-					<a href="receta.html?id=`+recetasB.FILAS[i].id+ `" title=`+recetasB.FILAS[i].nombre+`>
-					<img src="fotos/`+recetasB.FILAS[i].fichero+`" alt="` + recetasB.FILAS[i].nombre + `">
-					<h3>`+recetasB.FILAS[i].nombre+`</h3>
-					</a>
+						<a href="receta.html?id=`+recetasB.FILAS[i].id+ `" title=`+recetasB.FILAS[i].nombre+`>
+							<img src="fotos/`+recetasB.FILAS[i].fichero+`" alt="` + recetasB.FILAS[i].nombre + `">
+							<h2>`+recetasB.FILAS[i].nombre+`</h2>
+						</a>
 					</header>				
 				
 			</div>`;
@@ -818,7 +818,7 @@ function ponerIngredientes(ingredientes){
 
 			 `<div>
 					
-					<h4 id="listaIngredientes">`+ingredientes.FILAS[i].nombre+`</h4>			
+					<h4 id="listaIngredientes">- `+ingredientes.FILAS[i].nombre+`</h4>			
 				
 			</div>`;
 		

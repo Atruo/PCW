@@ -47,12 +47,14 @@
 	
 	
 
-		<div id="registroOK" style="display: none">Registro realizado exitosamente. Pulse continuar para iniciar sesion <a href="login.html"><button>Continuar</button></a></div>
+		<div id="registroOK" style="display: none">Registro realizado exitosamente. Pulse continuar para iniciar sesion 	<a href="login.html"><button>Continuar</button></a>
+		</div>
 
 
 			<div id="loginReg" class="card">
-				<form id="registroForm" onsubmit="return check(this);">
 					<h3>Registro de nuevo usuario</h3>
+				<form id="registroForm" onsubmit="return check(this);">
+					
 					<div>
 						<label for="nickname">Login:</label>
 						<input type="text" name="login" id="nickname" pattern="^[^0-9][a-zA-Z0-9]{5,19}"

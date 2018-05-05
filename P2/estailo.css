@@ -170,6 +170,32 @@ body>nav{
 
 	background-color: #F1CE5D;
 }
+
+#visorRecetas1>div>section>div>a>h3{
+
+			text-overflow: ellipsis; 
+			overflow: hidden; 
+			width: 100%;
+			white-space: nowrap;
+}
+#visorRecetas2>div>section>div>a>h3{
+
+			text-overflow: ellipsis; 
+			overflow: hidden; 
+			width: 100%;
+			white-space: nowrap;
+}
+
+#visorRecetas3>div>section>div>a>h3{
+
+			text-overflow: ellipsis; 
+			overflow: hidden; 
+			width: 100%;
+			white-space: nowrap;
+}
+
+
+
 #visorRecetas2>div{
 	width: 100%;
 
@@ -311,7 +337,15 @@ body>footer{
 		text-align: center;
 	}
 
-
+		#botonPag{
+			margin-left: 40%;
+		}
+		#textoBoton{
+			margin-left: 1em;
+		}
+	#botonPagB{
+		margin-left: 20%;
+	}
 
 
 
@@ -321,26 +355,34 @@ body>footer{
 
 /* ------------------------------------------REGISTRO------------------------------------- */
 
-#formulario{
-	margin-left: 3em;
+#loginReg>form{
+	background-color: ##F7E9A6;
+	width: 30%;
+	margin-left: 10em;
 }
-#formulario>p{
-	width: 10em;
+
+#loginReg>form>div{
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-content: center;
 }
+#loginReg>form>input{
 
-#formulario>form>p:hover{
-
-	background-color: #EA3C0D;
-
-}
-	
-#formulario>form>p>span>:focus{		
-
-background-color: #507FE9;
+	margin-top: 1em;
+	margin-left: 4em;
 }
 /* ------------------------------------------BUSCAR------------------------------------- */
+
+#buscarForm>input{
+	
+}
+
+
 #resultadosBusqueda>div{
 	width: 100%;
+	
 
 }
 #resultadosBusqueda>div>section{
@@ -353,6 +395,8 @@ background-color: #507FE9;
 	margin: .5em;
 	display: inline-block;
 
+	
+
 }
 
 #resultadosBusqueda>div>section>a>img{
@@ -360,9 +404,20 @@ background-color: #507FE9;
 	height: 18em;
 	
 }
+#resultadosBusqueda>div>section>div>a>h3{
+			text-overflow: ellipsis; 
+			overflow: hidden; 
+			width: 100%;
+			white-space: nowrap;
+	
+}
+
+
 #resultadosBusqueda>div>section>div{
 
 	background-color: #F1CE5D;
+
+	
 }
 
 
@@ -403,7 +458,7 @@ background-color: #507FE9;
 
 #logeo>form>p:hover{
 
-	background-color: #EA3C0D;
+	background-color: #FFEBA6;
 
 }
 	
@@ -414,16 +469,17 @@ background-color: #507FE9;
 
 
 	/* ------------------------------------------RECETA------------------------------------- */
+	#ingredientesRec{
 
-
-
-	#recetaimg{
-
-		width: 60%;
-		margin-left: 20%;
-		padding: .5em;
 	}
-	
+
+	#arribaRec>div>header>a>img{
+		width: 50%;
+		margin-top: 2em;
+		margin-left: 7em;
+	}
+		
+
 	#coments>a>h5{
 		border-top:1px solid #000000;
 		border-bottom:1px solid #000000;
@@ -527,17 +583,46 @@ background-color: #507FE9;
 		}
 		#visorRecetas3>div>section{
 			width: 48%;
+			
 		}
 		#resultadosBusqueda>div{
 			width: 100%;
+
+
 		}
 		#resultadosBusqueda>div>section{
 			width: 48%;
 		}
 
 		#botonPag{
-			margin-left: 40%;
+			margin-left: 45%;
+		}
+		#textoBoton{
+			margin-left: 1em;
+		}
+
+		#loginReg>form{
+			background-color: ##F7E9A6;
+			width: 30%;
+			margin-left: 20em;
+		}
+
+		#loginReg>form>input{
+
+			margin-top: 1em;
+			margin-left: 8em;
 		}
 		
+		#arribaRec>div>header>a>img{
+		width: 50%;
+		margin-top: 2em;
+		margin-left: 13em;
+	}
+
+	#botonPagB{
+		margin-left: 41%
+	}
+
+	
 
 	}
