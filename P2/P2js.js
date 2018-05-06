@@ -977,6 +977,86 @@ function cerrarValOK(){
 	text.style.display = 'none'; 
 }
 
+function dejarComentario(frm)
+{
+	var url_string = window.location.href;
+	var url_str = new URL(url_string);
+	var id = url_str.searchParams.get("id");
+
+	if(id==undefined){
+ 		var t = url_string.split('?');
+ 		id=t[1];
+ 	}
+	let fd = new FormData(),
+ 	xhr = new XMLHttpRequest(),
+	url = 'rest/receta/' + id + '/comentario';
+	console.log('ID: '+id );
+
+  if(!sessionStorage.getItem('usuario')){
+  	mensajeCom(2);
+  	return false;
+  }
+
+	var usu = JSON.parse(sessionStorage.getItem('usuario'));
+	fd.append('l', usu.login );
+	fd.append('titulo', frm.titulo_coment.value);
+	fd.append('texto', frm.comentario.value);
+
+	xhr.open('POST', url, true);
+
+  xhr.onload = function(){
+
+		 let r = JSON.parse(xhr.responseText);
+
+		 if(r.RESULTADO == "OK"){
+			 var form = document.getElementById("form_comentario").reset();
+
+			 // cargar coments
+
+			 mensajeCom(0);
+
+		 } else {
+			 mensajeCom(1);
+		 }
+  }
+	xhr.setRequestHeader('Authorization', usu.clave);
+  xhr.send(fd);
+
+	return false;
+
+}
+
+function mensajeCom(x){
+
+	let r = document.getElementById('comOK');
+	let s = document.getElementById('comNO');
+	let y = document.getElementById('comLog');
+
+	if(x==0){
+		r.style.display = 'block';
+		r.style.color = "#23EC1E";
+	}else if(x==1){
+		s.style.display = 'block';
+		s.style.color = "#D40707";
+	}else {
+		y.style.display = 'block';
+		y.style.color = "#D40707";
+	}
+
+
+}
+
+function quitarCom(){
+
+	let r = document.getElementById('comOK');
+	let s = document.getElementById('comNO');
+	let y = document.getElementById('comNO');
+
+	r.style.display = 'none';
+	s.style.display = 'none';
+	y.style.display = 'none';
+	location.reload();
+}
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1379,4 +1459,10 @@ function quitarMensajeNew(){
 	s.style.display = 'none';
 	t.style.display = 'none';
 	y.style.display = 'none';
+}
+
+
+
+function irLogin(){
+	window.location.href="login.html";
 }

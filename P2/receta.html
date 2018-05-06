@@ -74,17 +74,38 @@
 
 
 <h2>Añade tu comentario:</h2>
-	<form action="demo_form.asp" method="get">
+	<form id="form_comentario" onsubmit=" return dejarComentario(this);">
 		<p>Título: </p>
-		<input type="text" required="" maxlength="50"><br>
+		<input id="titulo_coment" type="text" required="" maxlength="50"><br>
 		<p>Añade tu comentario: </p>
-		<textarea rows="4" cols="50" required=""></textarea><br>
+		<textarea id="comentario" rows="4" cols="50" required=""></textarea><br>
 		
-		<button type="submit" value="comentar" >Comentar</button>
+		<input type="submit">
 		
-
-
 	</form>
+
+	<!-- Modal Content -->
+			<div class="card" id="comOK" style="display: none;">
+				
+				<p>Enviado Correctamente</p>
+				<button onclick="quitarCom();">Aceptar</button>
+			</div>
+
+	<!-- Modal Content -->
+			<div class="card" id="comNO" style="display: none;">
+				
+				<p>Fallo al enviar Comentario</p>
+				<button onclick="quitarCom();">Aceptar</button>
+			</div>
+
+	<!-- Modal Content -->
+			<div class="card" id="comLog" style="display: none;">
+				
+				<p>Debes estar registrado para poder añadir comentarios</p>
+				<button onclick="quitarCom();">Aceptar</button>
+			</div>
+
+
 <h2>Comentarios:</h2>
 	
 <section id="coments"></section>
