@@ -89,14 +89,7 @@ function comprobarStorage(){
 		}	
 
 		if(comenRec != undefined){
-			let u = document.getElementById('form_comentario');
-
-			u.innerHTML=
 			
-			`
-				<h3>Para dejar un comentario debes estar <a href="login.html">logueado</a></h3>
-			`;
-			u.style.color = '#C71C1C';
 		}
 		document.getElementById('menu_nueva').innerHTML="";
 		document.getElementById('menu_logout').innerHTML="";
@@ -106,6 +99,25 @@ function comprobarStorage(){
 
 	if(inde[1] == "ex.html"){
 		pedirEntradas();
+	}
+
+}
+
+function recLog(){
+
+
+	var login = sessionStorage.getItem('usuario');
+	
+
+	if(login){}else{
+		let u = document.getElementById('form_comentario');
+
+		u.innerHTML=
+			
+			`
+				<h3>Para dejar un comentario debes estar <a href="login.html">logueado</a></h3>
+			`;
+		u.style.color = '#C71C1C';
 	}
 
 }
