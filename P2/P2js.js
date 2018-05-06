@@ -67,7 +67,7 @@ function comprobarStorage(){
 		
 		var log = window.location.href.split('/log');     //Para restringir el acceso a login estando logeado
 		var reg = window.location.href.split('/regi');	  //Para restringir el acceso a registro estando logeado
-
+		var nuevaR = window.location.href.split('/nue');
 		if(log[1] == "in.html"){
 			location.href = "index.html";
 		}
@@ -76,11 +76,28 @@ function comprobarStorage(){
 			location.href = "index.html";
 		}		 
 
-
+		
 
 
 	}else{
 		console.log('NO ESTOY LOGEADO');
+		var nuevaR = window.location.href.split('/nue');
+		var comenRec = window.location.href.split('/receta.html');
+		if(nuevaR[1] == "va-receta.html"){
+			location.href = "index.html";
+
+		}	
+
+		if(comenRec != undefined){
+			let u = document.getElementById('form_comentario');
+
+			u.innerHTML=
+			
+			`
+				<h3>Para dejar un comentario debes estar <a href="login.html">logueado</a></h3>
+			`;
+			u.style.color = '#C71C1C';
+		}
 		document.getElementById('menu_nueva').innerHTML="";
 		document.getElementById('menu_logout').innerHTML="";
 	}
@@ -210,7 +227,7 @@ function ponerRecetas(recetas){
 
 				if(x<6){
 					todas.innerHTML+= articulo;
-				}else if(x>=6&&x<13){
+				}else if(x>=6&&x<12){
 						todas2.innerHTML+= articulo;
 					}else{
 						todas3.innerHTML+= articulo;
@@ -262,7 +279,7 @@ function ponerRecetas(recetas){
 
 				if(x<6){
 					todas.innerHTML+= articulo;
-				}else if(x>=6&&x<13){
+				}else if(x>=6&&x<12){
 						todas2.innerHTML+= articulo;
 					}else{
 						todas3.innerHTML+= articulo;
@@ -1333,8 +1350,10 @@ function mandarReceta(form){
                list.removeChild(list.childNodes[0]);
              }
              let rrr = document.getElementById('recetaNew');
+             let sss = document.getElementById('nameRecNew');
             	rrr.style.color = "#15F21A";
   				rrr.style.display = 'block';
+  				sss.innerHTML = " "+titulo+" ";
   				
   				
 
@@ -1466,3 +1485,4 @@ function quitarMensajeNew(){
 function irLogin(){
 	window.location.href="login.html";
 }
+
