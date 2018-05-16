@@ -1,5 +1,21 @@
 var ANCHO = 360;
 var ALTO = 360;
+var ncols = 3;
+
+function sacarFilaColumna(e){
+
+	let x = e.offsetX,
+		y = e.offsetY,
+		dim = e.target.width/ncols,
+		fila,col;
+
+		col= Math.floor(x/dim);
+		fila= Math.floor(y/dim);
+		document.querySelector('#posFCXY').innerHTML = `(${col},${fila})`;
+
+		return [col,fila];
+
+}
 function prepararCanvas(){
 
 	let cvs = document.querySelectorAll('canvas');
@@ -38,6 +54,80 @@ function prepararCanvas(){
 		fr.readAsDataURL(fichero);
 
 	}
+
+	//Eventos de Raton
+
+	let cv02 = document.querySelector('#cv02');
+	cv02.onmousemove = function(e){
+
+		let x = e.offsetX,
+			y = e.offsetY,
+			dim=e.target.width/ncols,
+			[col,fila] = sacarFilaColumna(e);
+	
+			document.querySelector('#posXY').innerHTML = `(${x},${y})`;
+
+			//pintar trozo de imagen
+			cv02.width = cv02.width;
+			let ctx02 = cv02.getContext('2d');
+				ctx02.drawImage(cv01,col*dim,fila*dim,dim,dim,col*dim,fila*dim,dim,dim);
+	}
+
+	cv02.onmouseenter = function(e){
+
+		let x = e.offsetX,
+			y = e.offsetY;
+	
+			document.querySelector('#posEXY').innerHTML = `(${x},${y})`;
+	}
+	cv02.onmouseleave = function(e){
+
+		let x = e.offsetX,
+			y = e.offsetY;
+	
+			document.querySelector('#posSXY').innerHTML = `(${x},${y})`;
+	}
+
+	cv02.onclick = function(e){
+
+		let x = e.offsetX,
+			y = e.offsetY,
+			[col,fila] = sacarFilaColumna(e),
+			dim = e.target.width/ncols;
+	
+			document.querySelector('#posCXY').innerHTML = `(${x},${y})`;
+			
+			
+			document.querySelector('#posFCXY').innerHTML = `(Columna: ${col})(Fila: ${fila})`;
+			let ctx01 = cv01.getContext('2d'),
+				ctx02 = cv02.getContext('2d'),
+				imgData = ctx01.getImageData(col*dim,fila*dim,dim,dim);
+
+			ctx02.putImageData(imgData,col*dim,fila*dim);
+			dibujarLineas();
+			
+			
+
+
+	}
+
+	cv02.onmousedown = function(e){
+
+		let x = e.offsetX,
+			y = e.offsetY;
+	
+			document.querySelector('#posDXY').innerHTML = `(${x},${y})`;
+	}
+
+	cv02.onmouseup = function(e){
+
+		let x = e.offsetX,
+			y = e.offsetY;
+	
+			document.querySelector('#posUXY').innerHTML = `(${x},${y})`;
+	}
+
+
 }
 
 
@@ -76,9 +166,13 @@ function rotar(){
 		ctx.rotate(Math.PI*(ang/180));
 }
 
-function limpiar(){
+function limpiar(e){
 
-	let cv = document.querySelector('#cv01');
+	//let cv = document.querySelector('#cv01');
+	//cv.width = cv.width;
+	let footer = e.target.parentNode,
+		section = footer.parentNode,
+		cv = section.querySelector('canvas');
 
 	cv.width = cv.width;
 }

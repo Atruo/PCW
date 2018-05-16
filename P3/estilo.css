@@ -1,0 +1,173 @@
+body{
+min-width: 400px;
+max-width: 960px;
+margin: 0 auto;
+padding: 0em;
+
+}
+
+body>header{
+	display: flex;
+	flex-direction: column;
+
+	overflow: hidden;
+	
+	background size: auto;
+	
+	text-align: center;
+	background-image: url(fondo.jpg);
+	background-color: #FFEBB6;
+
+	
+
+	
+	
+
+
+}
+
+
+body>header>div>img{
+
+	align-self: center;
+	width: 20%;
+	height: 40%;
+	padding: .5em;
+}
+body>header>div{
+display: flex;
+flex-direction: column;
+}
+
+
+
+
+
+
+
+
+body>header>div>h1{
+
+
+color: #EC1818;
+
+}
+#deluxe{
+color: #0CAC09;
+}
+body>header>div>p{
+	
+	color: #0F11E1;
+	/*border-top: 1px solid #fff;  el px es el grosor de la linea
+	border-bottom:1px solid #fff;*/
+	
+	
+}
+
+body>footer{
+	overflow: hidden;
+	background-color: #20E022;
+	color: #fff;
+	padding: 0.5em;
+	margin-top: 1em;
+	
+
+}
+
+	body>footer>p{
+
+		margin: 0;
+	}
+	#pie{
+		
+	}
+	
+	#pie>p{
+		text-align: center;
+	}
+
+	#cajon{
+		width: 100%;
+	}
+	
+	#cajon>div{
+	background-color: #FFEBB6;
+	width: 100%;
+	float: left;
+	padding: 1em;
+	box-sizing: border-box;
+	margin: .5em;
+	display: inline-block;
+
+	}
+	#uno{
+
+	border-top: 1px solid #FFCB46;  
+	border-left: 1px solid #FFCB46;  
+	border-right: 1px solid #FFCB46;  
+	border-bottom: 1px solid #FFCB46;  
+	margin: 1em;
+
+	width: 40%;
+	
+	}
+	#uno>h4{
+		text-align: center;
+	}
+	#uno>span{
+		text-align: center;
+	}
+
+	
+
+	#dos{
+
+	border-top: 1px solid #FFCB46;  
+	border-left: 1px solid #FFCB46;  
+	border-right: 1px solid #FFCB46;  
+	border-bottom: 1px solid #FFCB46;  
+	margin: 1em;
+
+	width: 40%;
+	
+	}
+
+	#cUno{
+	border: 1px solid #BE4A4A;
+	width: 360px;
+	height: 240px;
+	
+	padding: .5em;
+	margin-bottom: .5em;
+	margin-top: .5em;
+	}
+
+	#cDos{
+	border: 1px solid #BE4A4A;
+	width: 360px;
+	height: 240px;
+	margin-left: 1.5em;
+	padding: .5em;
+	margin-bottom: .5em;
+	margin-top: .5em;
+	}
+
+
+
+	@media all and (min-width: 720px){
+	
+		#cajon>{
+			width: 100%;
+		}
+		#cajon>div{
+			width: 48%;
+		}
+
+
+		#cUno{
+
+			margin-left: 1.5em;
+
+		}
+
+	}

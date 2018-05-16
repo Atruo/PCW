@@ -1,5 +1,15 @@
 body>section>canvas{
 	border: 1px solid #BE4A4A;
-	width: 480px;
-	height: 360px;
+	
+}
+
+body>section:nth-of-type(2)>div{
+display: flex;
+
+}
+
+body>section{
+	display:  inline-block;
+	float: left;
+	margin-right: .5em;
 }
