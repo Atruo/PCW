@@ -78,16 +78,22 @@ body>footer{
 
 		margin: 0;
 	}
-	#pie{
-		
-	}
 	
+	#cosasC1{
+		text-align: center;
+	}
+	#cosasC2{
+		
+		
+		overflow: hidden;
+	}
 	#pie>p{
 		text-align: center;
 	}
 
 	#cajon{
 		width: 100%;
+
 	}
 	
 	#cajon>div{
@@ -129,13 +135,16 @@ body>footer{
 	margin: 1em;
 
 	width: 40%;
+
 	
+	}
+	#dos>h4{
+		text-align: center;
 	}
 
 	#cUno{
 	border: 1px solid #BE4A4A;
-	width: 360px;
-	height: 240px;
+
 	
 	padding: .5em;
 	margin-bottom: .5em;
@@ -144,13 +153,13 @@ body>footer{
 
 	#cDos{
 	border: 1px solid #BE4A4A;
-	width: 360px;
-	height: 240px;
+	
 	margin-left: 1.5em;
 	padding: .5em;
 	margin-bottom: .5em;
 	margin-top: .5em;
 	}
+
 
 
 

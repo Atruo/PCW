@@ -29,9 +29,14 @@
 	<div id="uno">
 		<h4>Imagen</h4>
 		<canvas id="cUno"></canvas>
-		<div class="control">
-					<input type="file" name="image" id="l_img" accept="image/*" onchange="cargaImg(this);">
+		<div id="cosasC1">
+			<span class="icon-upload">Seleccionar una Imagen</span>
+			<div class="control">
+				<input type="file" name="image" id="l_img" accept="image/*" onchange="cargaImg(this);">
+			</div>
 		</div>
+		<br>
+		
 
 	</div>
 	
@@ -39,16 +44,20 @@
 	<div id="dos">
 		<h4>Jugar</h4>
 		<canvas id="cDos"></canvas>
-		<div>
-			<input type="color" name="color_lines" id="color" value="#00ddbc" onchange="copiarCanvas();">
+		<div id="cosasC2">
+			<div>
+				<input type="color" name="color_lines" id="color" value="#00ddbc" onchange="copiarCanvas();">
+			</div>
+			<div>
+				<select class="form-control" id="diff" onchange="copiarCanvas();">
+					<option value="0">Nivel fácil</option>
+					<option value="1">Nivel medio</option>
+					<option value="2">Nivel difícil</option>
+				</select>
+			</div>
 		</div>
-		<div>
-			<select class="form-control" id="diff" onchange="copiarCanvas();">
-				<option value="0">Nivel fácil</option>
-				<option value="1">Nivel medio</option>
-				<option value="2">Nivel difícil</option>
-			</select>
-		</div>
+		<br>
+
 	</div>
 
 	
