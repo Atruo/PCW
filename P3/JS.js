@@ -3,7 +3,9 @@ const _ALTO = 240;
 
 var _ncols;
 var _nrows;
-var _aciertos;
+var _aciertos=0;
+var bueno=[];
+var malo=[];
 
 
 function getCTX(query){
@@ -176,7 +178,7 @@ function mezclarImg(){
 			fil=0;
 		}
 
-	console.log(trozos)
+	
 
 	var desorden=desordenar(trozos); // vector desordenado
 	cont=0;
@@ -197,6 +199,8 @@ function mezclarImg(){
 	
 	
 	dibujarLineas();
+	bueno=trozos;
+	malo=desorden;
 	jugar();
 
 }
@@ -216,63 +220,54 @@ function sacarFilaColumna(e){
 
 }
 
+
 function desordenar(lista){
-
-
-	var lista2=[];
-	lista2[0]=lista[3];
-	lista2[1]=lista[22];
-	lista2[2]=lista[5];
-	lista2[3]=lista[18];
-	lista2[4]=lista[1];
-	lista2[5]=lista[20];
-	lista2[6]=lista[0];
-	lista2[7]=lista[19];
-	lista2[8]=lista[2];
-	lista2[9]=lista[21];
-	lista2[10]=lista[4];
-	lista2[11]=lista[23];
-	lista2[12]=lista[15];
-	lista2[13]=lista[8];
-	lista2[14]=lista[12];
-	lista2[15]=lista[11];
-	lista2[16]=lista[17];
-	lista2[17]=lista[6];
-	lista2[18]=lista[9];
-	lista2[19]=lista[14];
-	lista2[20]=lista[7];
-	lista2[21]=lista[16];
-	lista2[22]=lista[10];
-	lista2[23]=lista[13];
-
-	console.log(lista2)
-	return lista2;
-
+	lista = lista.sort(function() {return Math.random() - 0.5});
+	return lista;
 }
 
 
 function jugar(){
 
-	let cv02 = getCV('#cDos'),
+	var cv02 = getCV('#cDos'),
 		cv01 = getCV('#cUno'),
 		ctx01= getCTX('#cUno'),
 		ctx02= getCTX('#cDos');
-	var click=-1,res;
-	cv02.onclick = function(e){
 
+	var click=-1,
+		res;
+
+	cv02.onclick = function(e){
+		console.log('Entro a jugar')
 		let x = e.offsetX,
 			y = e.offsetY,
-			pos = getPosicion(x,y);
-
+			pos = getPosicion(x,y),
+			[col,fil]=sacarFilaColumna(e),
+			colA=1,
+			filA=1;
+			console.log(fil+'' +col)
+		var extra;
 			
-			if(click=-1){
+			if(click==-1){
 				click=pos;
+				colA=col;
+				filA=fil;
+				console.log('Primer click con posicion: '+click)
 			}else{
-				res = corrige(clik,pos);
+				res = corrige(pos);
 				if(res==1){
+					console.log('Acierto')
 					_aciertos++;
+					extra=malo[pos];
+					malo[pos]=malo[click];
+					malo[click]=extra;
+					console.log('Aciertos: '+_aciertos);
+					dibujarOK();
+
+
 					
 				}
+				click=-1;
 			}
 			
 
@@ -346,57 +341,31 @@ function getPosicion(x,y){
 
 }
 
-function corrige(x,y){
+function corrige(pos){
 
-	if(x==0 && y==3){
+	
+
+	if(malo[pos]===bueno[pos]){
 		return 1;
-	}else if(x==1 && y==22){
-		return 1;
-	}else if(x==2 && y==5){
-		return 1;
-	}else if(x==3 && y==18){
-		return 1;
-	}else if(x==4 && y==1){
-		return 1;
-	}else if(x==5 && y==20){
-		return 1;
-	}else if(x==6 && y==0){
-		return 1;
-	}else if(x==7 && y==19){
-		return 1;
-	}else if(x==8 && y==2){
-		return 1;
-	}else if(x==9 && y==21){
-		return 1;
-	}else if(x==10 && y==4){
-		return 1;
-	}else if(x==11 && y==23){
-		return 1;
-	}else if(x==12 && y==15){
-		return 1;
-	}else if(x==13 && y==8){
-		return 1;
-	}else if(x==14 && y==12){
-		return 1;
-	}else if(x==15 && y==11){
-		return 1;
-	}else if(x==16 && y==17){
-		return 1;
-	}else if(x==17 && y==6){
-		return 1;
-	}else if(x==18 && y==9){
-		return 1;
-	}else if(x==19 && y==14){
-		return 1;
-	}else if(x==20 && y==7){
-		return 1;
-	}else if(x==21 && y==16){
-		return 1;
-	}else if(x==22 && y==10){
-		return 1;
-	}else if(x==23 && y==13){
-		return 1;
-	}else {
+	}else{
 		return 0;
 	}
+}
+
+function dibujarOK(){
+	let ctx02 = getCTX('#cDos');
+	cont=0;
+	fil=0;
+	col=0;
+	for(f=0;f<_nrows;f++){
+			for(c=0;c<_ncols;c++){
+				ctx02.putImageData(malo[cont],fil,col);
+				fil+=60;
+				cont++;
+			}
+			col+=60;
+			c=0;
+			fil=0;
+		}
+		dibujarLineas();
 }
