@@ -6,6 +6,7 @@ var _nrows;
 var _aciertos=0;
 var bueno=[];
 var malo=[];
+var ord = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23];
 
 
 function getCTX(query){
@@ -150,21 +151,6 @@ function mezclarImg(){
 		ctx02=cv02.getContext('2d'),
 		imgData;
 
-	/*cv02.onmousemove = function(e){
-	let x = e.offsetX,
-		y = e.offsetY,
-		dim=(e.target.width/_ncols),
-		tam=60,
-		[col,fila] = sacarFilaColumna(e);
-		console.log(x);
- 		
-		cv02.width = cv02.width;
-		let ctx02 = cv02.getContext('2d');
-		//ctx02.drawImage(cv01,col*dim,fila*dim,tam,tam,col*dim,fila*dim,tam,tam);
-		let x = 
-		dibujarLineas();
-		imgData = ctx01.getImageData(0,0,cv01.width/_ncols,cv01.height/_nrows);
-	}*/
 
 	var f,c,trozos=[],cont=0,fil=0,col=0; // trozos en un array ordenado con todos los fragmentos del canvas 1
 		for(f=0;f<_nrows;f++){
@@ -178,15 +164,16 @@ function mezclarImg(){
 			fil=0;
 		}
 
-	
-
-	var desorden=desordenar(trozos); // vector desordenado
+	ord = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23];
+	bueno=trozos;	
+	malo=trozos;
+	desordenar(malo,ord); // vector desordenado
 	cont=0;
 	fil=0;
 	col=0;
 	for(f=0;f<_nrows;f++){
 			for(c=0;c<_ncols;c++){
-				ctx02.putImageData(desorden[cont],fil,col);
+				ctx02.putImageData(malo[cont],fil,col);
 				fil+=60;
 				cont++;
 			}
@@ -198,10 +185,10 @@ function mezclarImg(){
 	
 	
 	
-	dibujarLineas();
-	bueno=trozos;
-	malo=desorden;
+	dibujarLineas();	
+	
 	jugar();
+	console.log('Orden: '+ord)
 
 }
 
@@ -221,9 +208,28 @@ function sacarFilaColumna(e){
 }
 
 
-function desordenar(lista){
-	lista = lista.sort(function() {return Math.random() - 0.5});
-	return lista;
+function desordenar(lista,orden){
+
+	
+	lista=bueno;
+	orden = ord;
+
+	var j, x, i, y;
+   	for (i = 23 - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+       
+        x = lista[i];
+        lista[i] = lista[j];
+        lista[j] = x;
+    
+        y = orden[i];
+        orden[i] = orden[j];
+        orden[j] = y;
+    }
+  
+  	malo=lista;
+  	ord = orden;
+	
 }
 
 
@@ -254,7 +260,7 @@ function jugar(){
 				filA=fil;
 				console.log('Primer click con posicion: '+click)
 			}else{
-				res = corrige(pos);
+				res = corrige(pos,click);
 				if(res==1){
 					console.log('Acierto')
 					_aciertos++;
@@ -341,15 +347,19 @@ function getPosicion(x,y){
 
 }
 
-function corrige(pos){
+function corrige(pos,click){
 
-	
+	if(pos==ord[click]){
+		return 1;
+	}else {
+		return 0;
+	}
 
-	if(malo[pos]===bueno[pos]){
+	/*if(malo[pos]===bueno[pos]){
 		return 1;
 	}else{
 		return 0;
-	}
+	}*/
 }
 
 function dibujarOK(){
