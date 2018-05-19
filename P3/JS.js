@@ -251,8 +251,9 @@ function jugar(){
 			[col,fil]=sacarFilaColumna(e),
 			colA=1,
 			filA=1;
-			console.log(fil+'' +col)
-		var extra;
+			console.log(fil+'/' +col)
+			console.log('pos'+pos)
+		var extra,extra2;
 			
 			if(click==-1){
 				click=pos;
@@ -265,8 +266,11 @@ function jugar(){
 					console.log('Acierto')
 					_aciertos++;
 					extra=malo[pos];
+						extra2=ord[pos];
 					malo[pos]=malo[click];
+						ord[pos]=ord[click];
 					malo[click]=extra;
+						ord[click]=extra2;
 					console.log('Aciertos: '+_aciertos);
 					dibujarOK();
 
@@ -331,7 +335,7 @@ function getPosicion(x,y){
 	}else if (y>180 && y<=240){
 
 		if(x>=0 && x<=60){
-			return 17;
+			return 18;
 		}else if (x>60 && x<=120){
 			return 19;
 		}else if (x>120 && x<=180){
