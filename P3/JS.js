@@ -9,7 +9,8 @@ var malo=[];
 var ord = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23];
 var ord2 = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53];
 var ord3 = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95];
-
+var _piezasDes = 0;
+var _movimientos = 0;
 
 
 function getCTX(query){
@@ -143,6 +144,7 @@ function cargaImg(input){
 		copiarCanvas();
 	};
 	img.src = URL.createObjectURL(input.files[0]);
+	
 
 	//console.log(input.files[0]);
 }
@@ -154,6 +156,26 @@ function mezclarImg(){
 		ctx02=cv02.getContext('2d'),
 		imgData;
 	var _difi =document.querySelector("#diff");
+
+	document.getElementById("start").disabled = true;
+	document.getElementById("stop").disabled = false;
+	document.getElementById("ayuda").disabled = false;
+	var nodes = document.getElementById("colores").getElementsByTagName('*');
+	for(var i = 0; i < nodes.length; i++){
+	     nodes[i].disabled = true;
+	}
+	var nodes = document.getElementById("niveles").getElementsByTagName('*');
+	for(var i = 0; i < nodes.length; i++){
+	     nodes[i].disabled = true;
+	}
+	var nodes = document.getElementById("subir").getElementsByTagName('*');
+	for(var i = 0; i < nodes.length; i++){
+	     nodes[i].disabled = true;
+	}
+
+	control = setInterval(cronometro,10);
+	
+	
 
 	if(_difi.value == 0){
 
@@ -186,6 +208,8 @@ function mezclarImg(){
 				c=0;
 				fil=0;
 			}
+
+
 
 	}else if (_difi.value==1) {
 		var f,c,trozos=[],cont=0,fil=0,col=0; // trozos en un array ordenado con todos los fragmentos del canvas 1
@@ -278,7 +302,7 @@ function sacarFilaColumna(e){
 
 
 function desordenar(lista,orden){
-var _difi =document.querySelector("#diff");
+	var _difi =document.querySelector("#diff");
 	if(_difi.value==0){
 
 		lista=bueno;
@@ -366,44 +390,59 @@ function jugar(){
 			filA=1;
 			console.log(fil+'/' +col)
 			console.log('pos'+pos)
-		var extra,extra2;
+		var extra,extra2,
+			movs = document.getElementById('movs'),
+			rest = document.getElementById('piez');
+			restantes();
+
+
 			
+
+
 			if(click==-1){
 				click=pos;
 				colA=col;
 				filA=fil;
 				console.log('Primer click con posicion: '+click)
+
 			}else{
+				_movimientos++;
+				movs.innerHTML = _movimientos;
+				
+				rest.innerHTML = _piezasDes;
+
 				res = corrige(pos,click);
 				if(res==1){
+					rest.innerHTML=_piezasDes-1;
 					console.log('Acierto')
 					if(_difi.value==0){
-					extra=malo[pos];
-						extra2=ord[pos];
-					malo[pos]=malo[click];
-						ord[pos]=ord[click];
-					malo[click]=extra;
-						ord[click]=extra2;
+						extra=malo[pos];
+							extra2=ord[pos];
+						malo[pos]=malo[click];
+							ord[pos]=ord[click];
+						malo[click]=extra;
+							ord[click]=extra2;
 					}
 					if(_difi.value==1){
-					extra=malo[pos];
-						extra2=ord2[pos];
-					malo[pos]=malo[click];
-						ord2[pos]=ord2[click];
-					malo[click]=extra;
-						ord2[click]=extra2;
+						extra=malo[pos];
+							extra2=ord2[pos];
+						malo[pos]=malo[click];
+							ord2[pos]=ord2[click];
+						malo[click]=extra;
+							ord2[click]=extra2;
 					}
 					if(_difi.value==2){
-					extra=malo[pos];
-						extra2=ord3[pos];
-					malo[pos]=malo[click];
-						ord3[pos]=ord3[click];
-					malo[click]=extra;
-						ord3[click]=extra2;
+						extra=malo[pos];
+							extra2=ord3[pos];
+						malo[pos]=malo[click];
+							ord3[pos]=ord3[click];
+						malo[click]=extra;
+							ord3[click]=extra2;
 					}
 					
 					dibujarOK();
 					contarAciertos();
+
 					console.log('Aciertos: '+_aciertos);
 
 
@@ -420,74 +459,74 @@ function jugar(){
 }
 
 function getPosicion(x,y){
-var _difi =document.querySelector("#diff");
+	var _difi =document.querySelector("#diff");
 
 
 
 
-if(_difi.value==0){
-	if(y>=0&&y<=60){
-		if(x>=0 && x<=60){
-			return 0;
-		}else if (x>60 && x<=120){
-			return 1;
-		}else if (x>120 && x<=180){
-			return 2;
-		}else if (x>180 && x<=240){
-			return 3;			
-		}else if (x>240 && x<=300){
-			return 4;			
-		}else if (x>300 && x<=360){
-			return 5;
+	if(_difi.value==0){
+		if(y>=0&&y<=60){
+			if(x>=0 && x<=60){
+				return 0;
+			}else if (x>60 && x<=120){
+				return 1;
+			}else if (x>120 && x<=180){
+				return 2;
+			}else if (x>180 && x<=240){
+				return 3;			
+			}else if (x>240 && x<=300){
+				return 4;			
+			}else if (x>300 && x<=360){
+				return 5;
+			}
+		}else if (y>60 && y<=120){
+
+			if(x>=0 && x<=60){
+				return 6;
+			}else if (x>60 && x<=120){
+				return 7;
+			}else if (x>120 && x<=180){
+				return 8;
+			}else if (x>180 && x<=240){
+				return 9;			
+			}else if (x>240 && x<=300){
+				return 10;			
+			}else if (x>300 && x<=360){
+				return 11;
+			}
+		}else if (y>120 && y<=180){
+			if(x>=0 && x<=60){
+				return 12;
+			}else if (x>60 && x<=120){
+				return 13;
+			}else if (x>120 && x<=180){
+				return 14;
+			}else if (x>180 && x<=240){
+				return 15;			
+			}else if (x>240 && x<=300){
+				return 16;			
+			}else if (x>300 && x<=360){
+				return 17;
+			}
+			
+		}else if (y>180 && y<=240){
+
+			if(x>=0 && x<=60){
+				return 18;
+			}else if (x>60 && x<=120){
+				return 19;
+			}else if (x>120 && x<=180){
+				return 20;
+			}else if (x>180 && x<=240){
+				return 21;			
+			}else if (x>240 && x<=300){
+				return 22;			
+			}else if (x>300 && x<=360){
+				return 23;
+			}
 		}
-	}else if (y>60 && y<=120){
 
-		if(x>=0 && x<=60){
-			return 6;
-		}else if (x>60 && x<=120){
-			return 7;
-		}else if (x>120 && x<=180){
-			return 8;
-		}else if (x>180 && x<=240){
-			return 9;			
-		}else if (x>240 && x<=300){
-			return 10;			
-		}else if (x>300 && x<=360){
-			return 11;
-		}
-	}else if (y>120 && y<=180){
-		if(x>=0 && x<=60){
-			return 12;
-		}else if (x>60 && x<=120){
-			return 13;
-		}else if (x>120 && x<=180){
-			return 14;
-		}else if (x>180 && x<=240){
-			return 15;			
-		}else if (x>240 && x<=300){
-			return 16;			
-		}else if (x>300 && x<=360){
-			return 17;
-		}
-		
-	}else if (y>180 && y<=240){
-
-		if(x>=0 && x<=60){
-			return 18;
-		}else if (x>60 && x<=120){
-			return 19;
-		}else if (x>120 && x<=180){
-			return 20;
-		}else if (x>180 && x<=240){
-			return 21;			
-		}else if (x>240 && x<=300){
-			return 22;			
-		}else if (x>300 && x<=360){
-			return 23;
-		}
 	}
-
-}
 	if(_difi.value==1){
 		var xx=0,xxx=40,yy=0,yyy=40,pos=0;
 		for(let i=0;i<6;i++){
@@ -648,6 +687,65 @@ function contarAciertos(){
 
 }
 
+function restantes(){
+	var cv02 = getCV('#cDos')
+	var ctx = getCTX('#cDos');
+	var un = 0,dos=0;
+	var _difi =document.querySelector("#diff");	
+	rest = document.getElementById('piez')
+
+
+	
+
+
+		if(_difi.value==0){
+			_piezasDes = 24;
+			for(let i=0;i<ord.length;i++){
+				if(ord[i]==i){
+					_piezasDes--;
+				}
+				un+=60;
+				if(un>=360){
+					un=0;
+					dos+=60;
+				}
+			}
+
+		}
+
+		if(_difi.value==1){
+			_piezasDes = 54;
+			for(let i=0;i<ord2.length;i++){
+				if(ord2[i]==i){
+					_piezasDes--;
+				}
+				un+=40;
+				if(un>=360){
+					un=0;
+					dos+=40;
+				}
+			}
+
+		}
+
+		if(_difi.value==2){
+			_piezasDes = 96;
+			for(let i=0;i<ord3.length;i++){
+				if(ord3[i]==i){
+					_piezasDes--;
+					console.log('Resto en : '+i)
+				}
+				un+=30;
+				if(un>=360){
+					un=0;
+					dos+=30;
+				}
+			}
+
+		}
+	rest.innerHTML = _piezasDes;
+
+}
 
 function ayuda(){
 	var cv02 = getCV('#cDos')
@@ -703,5 +801,75 @@ function ayuda(){
 	}
 
 
+
+
 	
+}
+
+
+var centesimas = 0;
+var segundos = 0;
+var minutos = 0;
+var horas = 0;
+
+function cronometro () {
+	if (centesimas < 99) {
+		centesimas++;
+		if (centesimas < 10) { centesimas = "0"+centesimas }
+		Centesimas.innerHTML = ":"+centesimas;
+	}
+	if (centesimas == 99) {
+		centesimas = -1;
+	}
+	if (centesimas == 0) {
+		segundos ++;
+		if (segundos < 10) { segundos = "0"+segundos }
+		Segundos.innerHTML = ":"+segundos;
+	}
+	if (segundos == 59) {
+		segundos = -1;
+	}
+	if ( (centesimas == 0)&&(segundos == 0) ) {
+		minutos++;
+		if (minutos < 10) { minutos = "0"+minutos }
+		Minutos.innerHTML = ":"+minutos;
+	}
+	if (minutos == 59) {
+		minutos = -1;
+	}
+	if ( (centesimas == 0)&&(segundos == 0)&&(minutos == 0) ) {
+		horas ++;
+		if (horas < 10) { horas = "0"+horas }
+		Horas.innerHTML = horas;
+	}
+}
+
+function parar(){
+
+	clearInterval(control);
+	document.getElementById("start").disabled = false;
+	document.getElementById("stop").disabled = true;
+	document.getElementById("ayuda").disabled = true;
+	var nodes = document.getElementById("niveles").getElementsByTagName('*');
+	for(var i = 0; i < nodes.length; i++){
+	     nodes[i].disabled = false;
+	}
+	var nodes = document.getElementById("colores").getElementsByTagName('*');
+	for(var i = 0; i < nodes.length; i++){
+	     nodes[i].disabled = false;
+	}
+	var nodes = document.getElementById("subir").getElementsByTagName('*');
+	for(var i = 0; i < nodes.length; i++){
+	     nodes[i].disabled = false;
+	}
+}
+
+
+function prepararBot(){
+
+	document.getElementById("start").disabled = false;
+	document.getElementById("stop").disabled = true;
+	document.getElementById("ayuda").disabled = true;
+
+
 }

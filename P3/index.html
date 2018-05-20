@@ -11,7 +11,7 @@
 
 
 </head>
-<body>
+<body onload="prepararBot();">
 
 <header>
 	<div>
@@ -31,7 +31,7 @@
 		<canvas id="cUno"></canvas>
 		<div id="cosasC1">
 			<span class="icon-upload">Seleccionar una Imagen</span>
-			<div class="control">
+			<div class="control" id="subir">
 				<input type="file" name="image" id="l_img" accept="image/*" onchange="cargaImg(this);">
 			</div>
 			<br>
@@ -46,10 +46,10 @@
 		<h4>Jugar</h4>
 		<canvas id="cDos"></canvas>
 		<div id="cosasC2">
-			<div>
+			<div id="colores">
 				<input type="color" name="color_lines" id="color" value="#00ddbc" onchange="copiarCanvas();">
 			</div>
-			<div>
+			<div id="niveles">
 				<select class="form-control" id="diff" onchange="copiarCanvas();">
 					<option value="0">Nivel fácil</option>
 					<option value="1">Nivel medio</option>
@@ -57,11 +57,20 @@
 				</select>
 			</div>
 			<div>
-				<button onclick="mezclarImg();">Start</button>
-				<button onclick="ayuda();">Ayuda</button>
-				<button>Stop</button>
+				<button id="start" onclick="mezclarImg();restantes(); ">Start</button>
+				<button id="ayuda" onclick="ayuda();">Ayuda</button>
+				<button id="stop" onclick="parar();">Stop</button>
 			</div>
-		</div>
+
+			<div id="contenedor">
+				<span class="reloj" id="Horas">00</span>
+				<span class="reloj" id="Minutos">:00</span>
+				<span class="reloj" id="Segundos">:00</span>
+				<span class="reloj" id="Centesimas">:00</span>
+				<span>Movimientos: <span id="movs">0</span></span>
+				<span>Piezas restantes: <span id="piez"></span></span>
+			</div>
+
 		<br>
 
 	</div>
