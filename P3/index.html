@@ -24,6 +24,19 @@
 
 </header>
 
+<div id="ganar" style="display: none">
+	
+	Enhorabuena has ganado en <span id="tiempoWin"></span> con <span id="movsWin"></span> movimientos  <button onclick="cerrar();">Cerrar</button>
+</div>
+
+<div id="perder" style="display: none">
+	
+	Has dejado <span id="piezasPorGanar"></span> piezas por colocar bien después de <span id="movsPorGanar"></span> movimientos y has empleado <span id="tiempoPorGanar"></span> <button onclick="cerrar();">Cerrar</button>
+</div>
+
+
+
+
 <div id="cajon">
 	
 	<div id="uno">
@@ -57,7 +70,7 @@
 				</select>
 			</div>
 			<div>
-				<button id="start" onclick="mezclarImg();restantes(); ">Start</button>
+				<button id="start" onclick="mezclarImg();restantes();reseteo(); ">Start</button>
 				<button id="ayuda" onclick="ayuda();">Ayuda</button>
 				<button id="stop" onclick="parar();">Stop</button>
 			</div>
@@ -78,6 +91,7 @@
 	
 
 </div>
+
 
 
 

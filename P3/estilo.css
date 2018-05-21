@@ -161,7 +161,14 @@ body>footer{
 	}
 
 
-
+	#ganar{
+		background-color: #56FC36;
+		text-align: center;
+	}
+	#perder{
+		background-color: #F44836;
+		text-align: center;
+	}
 
 
 	@media all and (min-width: 720px){

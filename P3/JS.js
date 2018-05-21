@@ -380,6 +380,7 @@ function jugar(){
 		res;
 
 	cv02.onclick = function(e){
+		postAyuda();
 
 		console.log('Entro a jugar')
 		let x = e.offsetX,
@@ -393,8 +394,7 @@ function jugar(){
 		var extra,extra2,
 			movs = document.getElementById('movs'),
 			rest = document.getElementById('piez');
-			restantes();
-
+			
 
 			
 
@@ -409,7 +409,7 @@ function jugar(){
 				_movimientos++;
 				movs.innerHTML = _movimientos;
 				
-				rest.innerHTML = _piezasDes;
+				
 
 				res = corrige(pos,click);
 				if(res==1){
@@ -453,7 +453,7 @@ function jugar(){
 			}
 			
 
-
+			restantes();
 
 	}
 }
@@ -607,6 +607,7 @@ function dibujarOK(){
 	cont=0;
 	fil=0;
 	col=0;
+	var rest = document.getElementById('piez');
 	var _difi =document.querySelector("#diff");
 	if(_difi.value==0){
 		for(f=0;f<_nrows;f++){
@@ -646,9 +647,65 @@ function dibujarOK(){
 	}
 
 
+			restantes();
+			if(_piezasDes==0 || _piezasDes == 1){
+							hasGanado();
+							rest.innerHTML = _piezasDes;
+
+					}
 
 
 		dibujarLineas();
+}
+
+function postAyuda(){
+
+	console.log('Entro en post ayuda')
+	var _difi =document.querySelector("#diff"),
+		cont=0,
+		fil=0,
+		col=0,
+		ctx02 = getCTX('#cDos');
+
+		if(_difi.value==0){
+		for(f=0;f<_nrows;f++){
+				for(c=0;c<_ncols;c++){
+					ctx02.putImageData(malo[cont],fil,col);
+					fil+=60;
+					cont++;
+				}
+				col+=60;
+				c=0;
+				fil=0;
+			}
+		}
+		if(_difi.value==1){
+		for(f=0;f<_nrows;f++){
+				for(c=0;c<_ncols;c++){
+					ctx02.putImageData(malo[cont],fil,col);
+					fil+=40;
+					cont++;
+				}
+				col+=40;
+				c=0;
+				fil=0;
+			}
+		}
+		if(_difi.value==2){
+		for(f=0;f<_nrows;f++){
+				for(c=0;c<_ncols;c++){
+					ctx02.putImageData(malo[cont],fil,col);
+					fil+=30;
+					cont++;
+				}
+				col+=30;
+				c=0;
+				fil=0;
+			}
+		}
+
+		dibujarLineas();
+
 }
 
 
@@ -743,7 +800,11 @@ function restantes(){
 			}
 
 		}
-	rest.innerHTML = _piezasDes;
+	
+
+	
+	
+	
 
 }
 
@@ -846,6 +907,10 @@ function cronometro () {
 
 function parar(){
 
+	let y = document.getElementById('perder'),
+		piezas = document.getElementById('piezasPorGanar'),
+		tiempo = document.getElementById('tiempoPorGanar'),
+		movs = document.getElementById('movsPorGanar');
 	clearInterval(control);
 	document.getElementById("start").disabled = false;
 	document.getElementById("stop").disabled = true;
@@ -862,6 +927,11 @@ function parar(){
 	for(var i = 0; i < nodes.length; i++){
 	     nodes[i].disabled = false;
 	}
+
+	piezas.innerHTML = _piezasDes;
+	tiempo.innerHTML = horas+':'+minutos+':'+segundos+':'+centesimas;
+	movs.innerHTML = _movimientos;
+	y.style.display = 'block';
 }
 
 
@@ -871,5 +941,74 @@ function prepararBot(){
 	document.getElementById("stop").disabled = true;
 	document.getElementById("ayuda").disabled = true;
 
+
+}
+
+function hasGanado(){
+
+	let tiempo = document.getElementById('tiempoWin'),
+		movs = document.getElementById('movsWin'),
+		modal = document.getElementById('ganar');
+
+		clearInterval(control);
+	document.getElementById("start").disabled = false;
+	document.getElementById("stop").disabled = true;
+	document.getElementById("ayuda").disabled = true;
+	var nodes = document.getElementById("niveles").getElementsByTagName('*');
+	for(var i = 0; i < nodes.length; i++){
+	     nodes[i].disabled = false;
+	}
+	var nodes = document.getElementById("colores").getElementsByTagName('*');
+	for(var i = 0; i < nodes.length; i++){
+	     nodes[i].disabled = false;
+	}
+	var nodes = document.getElementById("subir").getElementsByTagName('*');
+	for(var i = 0; i < nodes.length; i++){
+	     nodes[i].disabled = false;
+	}
+
+
+	modal.style.display = 'block';
+	
+	tiempo.innerHTML= horas+':'+minutos+':'+segundos+':'+centesimas;
+	movs.innerHTML = _movimientos;
+	
+
+}
+
+
+function cerrar(){
+
+
+	let x = document.getElementById('ganar'),
+		y = document.getElementById('perder');
+
+		x.style.display = 'none',
+		y.style.display = 'none';
+		reseteo();
+}
+
+function reseteo(){
+
+	_aciertos=0;
+	_movimientos = 0;
+	_piezasDes = 0;
+	centesimas = 0;
+	segundos = 0;
+	minutos = 0;
+	horas = 0;
+	let h = document.getElementById('Horas'),
+		m = document.getElementById('Minutos'),
+		s = document.getElementById('Segundos'),
+		mi = document.getElementById('Centesimas'),
+		movs = document.getElementById('movs'),
+		piez = document.getElementById('piez');
+
+		h.innerHTML = ':00';
+		m.innerHTML = ':00';
+		s.innerHTML = ':00';
+		mi.innerHTML = ':00';
+		movs.innerHTML = 0;
+		piez.innerHTML = '';
 
 }
