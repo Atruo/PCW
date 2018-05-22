@@ -972,7 +972,7 @@ function pintarSel(x,y){
 
 			console.log('COORDENADAS SEL: '+ solC +' '+solF)
 			dibujarLineas();
-			ctx.fillStyle = 'rgba(255,035,001,.4)'; // para hacerlo con trasnparencias
+			ctx.fillStyle = 'rgba(255,255,000,.6)'; // para hacerlo con trasnparencias
 			ctx.fillRect(solC,solF,60,60);
 
 	}
@@ -1002,7 +1002,7 @@ function pintarSel(x,y){
 
 			console.log('COORDENADAS SEL: '+ solC +' '+solF)
 			dibujarLineas();
-			ctx.fillStyle = 'rgba(255,035,001,.5)'; // para hacerlo con trasnparencias
+			ctx.fillStyle = 'rgba(255,255,000,.5)'; // para hacerlo con trasnparencias
 			ctx.fillRect(solC,solF,40,40);
 
 	}
@@ -1032,7 +1032,7 @@ function pintarSel(x,y){
 
 			console.log('COORDENADAS SEL: '+ solC +' '+solF)
 			dibujarLineas();
-			ctx.fillStyle = 'rgba(255,035,001,.6)'; // para hacerlo con trasnparencias
+			ctx.fillStyle = 'rgba(255,255,000,.6)'; // para hacerlo con trasnparencias
 			ctx.fillRect(solC,solF,30,30);
 
 	}
