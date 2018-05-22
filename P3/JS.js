@@ -11,6 +11,7 @@ var ord2 = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,
 var ord3 = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95];
 var _piezasDes = 0;
 var _movimientos = 0;
+var primi = 0;
 
 
 function getCTX(query){
@@ -174,7 +175,8 @@ function mezclarImg(){
 	}
 
 	control = setInterval(cronometro,10);
-	
+
+
 	
 
 	if(_difi.value == 0){
@@ -381,7 +383,7 @@ function jugar(){
 
 	cv02.onclick = function(e){
 		postAyuda();
-
+		
 		console.log('Entro a jugar')
 		let x = e.offsetX,
 			y = e.offsetY,
@@ -395,7 +397,7 @@ function jugar(){
 			movs = document.getElementById('movs'),
 			rest = document.getElementById('piez');
 			
-
+			
 			
 
 
@@ -404,6 +406,8 @@ function jugar(){
 				colA=col;
 				filA=fil;
 				console.log('Primer click con posicion: '+click)
+				pintarSel(x,y);
+				primi=1;
 
 			}else{
 				_movimientos++;
@@ -449,6 +453,7 @@ function jugar(){
 					
 				}
 				click=-1;
+				primi =0;
 
 			}
 			
@@ -456,6 +461,131 @@ function jugar(){
 			restantes();
 
 	}
+
+	cv02.onmousemove = function(e){
+
+		let x = e.offsetX,
+			y = e.offsetY;
+
+			
+			pintarActual(x,y);	
+			
+	
+		
+
+			
+				
+	}
+}
+
+
+function pintarActual(x,y){
+
+	let a = 0, b = 60;
+	let solC,solF;
+	var _difi =document.querySelector("#diff");
+	var cv02 = getCV('#cDos'), 
+		ctx02 = cv02.getContext('2d');
+		
+
+	if(_difi.value==0){
+
+		for(let i=0;i<4;i++){
+			if(y>=a && y<=b){
+					solF=a;
+				}else{
+					a+=60;
+					b+=60;
+				}
+		}
+
+		a=0;
+		b=60;
+		for(let u=0;u<6;u++){
+				if(x>=a && x<=b){
+					solC=a;
+				}else{
+					a+=60;
+					b+=60;
+				}
+			}
+
+
+			dibujarLineas();
+			ctx02.strokeStyle = '#F39416';  // color linea
+			ctx02.lineWidth =4;  
+			ctx02.strokeRect(solC,solF,60,60);
+
+	}
+	a=0;
+	b=40;
+	if(_difi.value==1){
+
+		for(let i=0;i<6;i++){
+			if(y>=a && y<=b){
+					solF=a;
+				}else{
+					a+=40;
+					b+=40;
+				}
+		}
+
+		a=0;
+		b=40;
+		for(let u=0;u<9;u++){
+				if(x>=a && x<=b){
+					solC=a;
+				}else{
+					a+=40;
+					b+=40;
+				}
+			}
+
+			dibujarLineas();
+			ctx02.strokeStyle = '#F39416';  // color linea
+			ctx02.lineWidth =4;  
+			ctx02.strokeRect(solC,solF,40,40);
+
+
+	}
+
+	if(_difi.value==2){
+		a=0;
+		b=30;
+		for(let i=0;i<8;i++){
+			if(y>=a && y<=b){
+					solF=a;
+				}else{
+					a+=30;
+					b+=30;
+				}
+		}
+
+		a=0;
+		b=30;
+		for(let u=0;u<12;u++){
+				if(x>=a && x<=b){
+					solC=a;
+				}else{
+					a+=30;
+					b+=30;
+				}
+			}
+
+
+			dibujarLineas();
+			ctx02.strokeStyle = '#F39416';  // color linea
+			ctx02.lineWidth =4;  
+			ctx02.strokeRect(solC,solF,30,30);
+
+
+	}
+	
+	
+			
+		
+
+
 }
 
 function getPosicion(x,y){
@@ -807,6 +937,110 @@ function restantes(){
 	
 
 }
+function pintarSel(x,y){
+	console.log('ENTRO EN PINTAR SEL')
+	var cv02 = getCV('#cDos')
+	var ctx = getCTX('#cDos');
+	var un = 0,dos=0;
+	var _difi =document.querySelector("#diff");	
+	let a = 0, b = 60;
+	let solC,solF;	
+	var ctx02 = cv02.getContext('2d');
+		
+
+	if(_difi.value==0){
+
+		for(let i=0;i<4;i++){
+			if(y>=a && y<=b){
+					solF=a;
+				}else{
+					a+=60;
+					b+=60;
+				}
+		}
+
+		a=0;
+		b=60;
+		for(let u=0;u<6;u++){
+				if(x>=a && x<=b){
+					solC=a;
+				}else{
+					a+=60;
+					b+=60;
+				}
+			}
+
+			console.log('COORDENADAS SEL: '+ solC +' '+solF)
+			dibujarLineas();
+			ctx.fillStyle = 'rgba(255,035,001,.4)'; // para hacerlo con trasnparencias
+			ctx.fillRect(solC,solF,60,60);
+
+	}
+	a=0;
+	b=40;
+	if(_difi.value==1){
+
+		for(let i=0;i<6;i++){
+			if(y>=a && y<=b){
+					solF=a;
+				}else{
+					a+=40;
+					b+=40;
+				}
+		}
+
+		a=0;
+		b=40;
+		for(let u=0;u<9;u++){
+				if(x>=a && x<=b){
+					solC=a;
+				}else{
+					a+=40;
+					b+=40;
+				}
+			}
+
+			console.log('COORDENADAS SEL: '+ solC +' '+solF)
+			dibujarLineas();
+			ctx.fillStyle = 'rgba(255,035,001,.5)'; // para hacerlo con trasnparencias
+			ctx.fillRect(solC,solF,40,40);
+
+	}
+		a=0;
+		b=30;
+	if(_difi.value==2){
+
+		for(let i=0;i<8;i++){
+			if(y>=a && y<=b){
+					solF=a;
+				}else{
+					a+=30;
+					b+=30;
+				}
+		}
+
+		a=0;
+		b=30;
+		for(let u=0;u<12;u++){
+				if(x>=a && x<=b){
+					solC=a;
+				}else{
+					a+=30;
+					b+=30;
+				}
+			}
+
+			console.log('COORDENADAS SEL: '+ solC +' '+solF)
+			dibujarLineas();
+			ctx.fillStyle = 'rgba(255,035,001,.6)'; // para hacerlo con trasnparencias
+			ctx.fillRect(solC,solF,30,30);
+
+	}
+
+	
+
+	
+}
 
 function ayuda(){
 	var cv02 = getCV('#cDos')
@@ -1011,4 +1245,11 @@ function reseteo(){
 		movs.innerHTML = 0;
 		piez.innerHTML = '';
 
+}
+
+function restIni(){
+
+		var rest = document.getElementById('piez');
+		restantes();
+		rest.innerHTML = _piezasDes;
 }
