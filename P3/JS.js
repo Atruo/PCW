@@ -12,6 +12,7 @@ var ord3 = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,
 var _piezasDes = 0;
 var _movimientos = 0;
 var primi = 0;
+var _ayuda = 0;
 
 
 function getCTX(query){
@@ -132,6 +133,16 @@ function dibujarLineas(){
 	ctx.stroke();
 }
 
+function imagenEspera(){
+		let query = '#cUno';
+		let cv = getCV(query);
+		let ctx = getCTX(query);
+		let img = new Image();
+		img.src = 'espera.jpg';
+	
+		ctx.drawImage(img,0,0,cv.width,cv.height);
+}
+
 function cargaImg(input){
 	let query = '#cUno';
 		let cv = getCV(query);
@@ -143,6 +154,8 @@ function cargaImg(input){
 		//PROBAR CON LOCALHOST
 		ctx.drawImage(img,0,0,cv.width,cv.height);
 		copiarCanvas();
+		document.getElementById("start").disabled = false;
+
 	};
 	img.src = URL.createObjectURL(input.files[0]);
 	
@@ -382,7 +395,7 @@ function jugar(){
 		res;
 
 	cv02.onclick = function(e){
-		postAyuda();
+		
 		
 		console.log('Entro a jugar')
 		let x = e.offsetX,
@@ -397,7 +410,7 @@ function jugar(){
 			movs = document.getElementById('movs'),
 			rest = document.getElementById('piez');
 			
-			
+			postAyuda();
 			
 
 
@@ -467,6 +480,10 @@ function jugar(){
 		let x = e.offsetX,
 			y = e.offsetY;
 
+			if(_ayuda==1){
+				postAyuda();
+				_ayuda = 0;
+			}
 			
 			pintarActual(x,y);	
 			
@@ -1047,7 +1064,7 @@ function ayuda(){
 	var ctx = getCTX('#cDos');
 	var un = 0,dos=0;
 	var _difi =document.querySelector("#diff");	
-
+	_ayuda = 1;
 	ctx.fillStyle = 'rgba(0,0,200,.6)'; // para hacerlo con trasnparencias
 
 	if(_difi.value==0){
@@ -1161,17 +1178,19 @@ function parar(){
 	for(var i = 0; i < nodes.length; i++){
 	     nodes[i].disabled = false;
 	}
+	
 
 	piezas.innerHTML = _piezasDes;
 	tiempo.innerHTML = horas+':'+minutos+':'+segundos+':'+centesimas;
 	movs.innerHTML = _movimientos;
 	y.style.display = 'block';
+
 }
 
 
 function prepararBot(){
 
-	document.getElementById("start").disabled = false;
+	document.getElementById("start").disabled = true;
 	document.getElementById("stop").disabled = true;
 	document.getElementById("ayuda").disabled = true;
 
@@ -1252,4 +1271,9 @@ function restIni(){
 		var rest = document.getElementById('piez');
 		restantes();
 		rest.innerHTML = _piezasDes;
+}
+
+function goIndex(){
+
+	location.href = "index.html";
 }

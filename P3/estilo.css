@@ -34,7 +34,18 @@ body>header>div>img{
 	height: 40%;
 	padding: .5em;
 }
+body>header>div>a>img{
+
+	align-self: center;
+	width: 20%;
+	height: 40%;
+	padding: .5em;
+}
 body>header>div{
+display: flex;
+flex-direction: column;
+}
+body>header>div>a{
 display: flex;
 flex-direction: column;
 }
