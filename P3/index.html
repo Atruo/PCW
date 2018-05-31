@@ -13,97 +13,102 @@
 </head>
 <body onload="prepararBot();imagenEspera();">
 
-<header>
-	<div>
-	
-		<img src="logo.jpg">
-		<h1>HTMLOPASOBIEN</h1>
-		<p id="deluxe">(puzzle deluxe V.I.P. edition)</p>
-		<p>¡Que Jocoso!</p>
+	<header>
+		<div>
+		
+			<img src="logo.jpg" alt="">
+			<h1>HTMLOPASOBIEN</h1>
+			<p id="deluxe">(puzzle deluxe V.I.P. edition)</p>
+			<p>¡Que Jocoso!</p>
+		</div>
+
+	</header>
+
+	<div id="ganar" style="display: none">
+		
+		Enhorabuena has ganado en <span id="tiempoWin"></span> con <span id="movsWin"></span> movimientos  <button onclick="cerrar();">Cerrar</button>
 	</div>
 
-</header>
-
-<div id="ganar" style="display: none">
-	
-	Enhorabuena has ganado en <span id="tiempoWin"></span> con <span id="movsWin"></span> movimientos  <button onclick="cerrar();">Cerrar</button>
-</div>
-
-<div id="perder" style="display: none">
-	
-	Has dejado <span id="piezasPorGanar"></span> piezas por colocar bien después de <span id="movsPorGanar"></span> movimientos y has empleado <span id="tiempoPorGanar"></span> <button onclick="cerrar();">Cerrar</button>
-</div>
+	<div id="perder" style="display: none">
+		
+		Has dejado <span id="piezasPorGanar"></span> piezas por colocar bien después de <span id="movsPorGanar"></span> movimientos y has empleado <span id="tiempoPorGanar"></span> <button onclick="cerrar();">Cerrar</button>
+	</div>
 
 
 
 
-<div id="cajon">
-	
-	<div id="uno">
-		<h4>Imagen</h4>
-		<canvas id="cUno"></canvas>
-		<div id="cosasC1">
-			<span class="icon-upload">Seleccionar una Imagen</span>
-			<div class="control" id="subir">
-				<input type="file" name="image" id="l_img" accept="image/*" onchange="cargaImg(this);">
+	<div id="cajon">
+		
+		<div id="uno">
+			<h4>Imagen</h4>
+			<canvas id="cUno"></canvas>
+			<div id="cosasC1">
+				<span class="icon-upload">Seleccionar una Imagen</span>
+
+				<div class="control" id="subir">
+						<br>
+					<input type="file" name="image" id="l_img" accept="image/*" onchange="cargaImg(this);">
+				</div>
+				<br>
+				
+
 			</div>
 			<br>
+			
+
 		</div>
-		<br>
+		
+
+		<div id="dos">
+			<h4>Jugar</h4>
+			<canvas id="cDos"></canvas>
+			<div id="cosasC2">
+				<div id="colores">
+					<input type="color" name="color_lines" id="color" value="#00ddbc" onchange="copiarCanvas();">
+				</div>
+				<div id="niveles">
+					<select class="form-control" id="diff" onchange="copiarCanvas();">
+						<option value="0">Nivel fácil</option>
+						<option value="1">Nivel medio</option>
+						<option value="2">Nivel difícil</option>
+					</select>
+				</div>
+				<div>
+					<button id="start" onclick="mezclarImg();restantes();reseteo();restIni(); ">Start</button>
+					<button id="ayuda" onclick="ayuda();">Ayuda</button>
+					<button id="stop" onclick="parar();">Stop</button>
+				</div>
+
+				<div id="contenedor">
+					<span class="reloj" id="Horas">00</span>
+					<span class="reloj" id="Minutos">:00</span>
+					<span class="reloj" id="Segundos">:00</span>
+					<span class="reloj" id="Centesimas">:00</span>
+					<span>Movimientos: <span id="movs">0</span></span>
+					<span>Piezas restantes: <span id="piez"></span></span>
+				</div>
+
+			<br>
+
+		</div>
+
 		
 
 	</div>
-	
-
-	<div id="dos">
-		<h4>Jugar</h4>
-		<canvas id="cDos"></canvas>
-		<div id="cosasC2">
-			<div id="colores">
-				<input type="color" name="color_lines" id="color" value="#00ddbc" onchange="copiarCanvas();">
-			</div>
-			<div id="niveles">
-				<select class="form-control" id="diff" onchange="copiarCanvas();">
-					<option value="0">Nivel fácil</option>
-					<option value="1">Nivel medio</option>
-					<option value="2">Nivel difícil</option>
-				</select>
-			</div>
-			<div>
-				<button id="start" onclick="mezclarImg();restantes();reseteo();restIni(); ">Start</button>
-				<button id="ayuda" onclick="ayuda();">Ayuda</button>
-				<button id="stop" onclick="parar();">Stop</button>
-			</div>
-
-			<div id="contenedor">
-				<span class="reloj" id="Horas">00</span>
-				<span class="reloj" id="Minutos">:00</span>
-				<span class="reloj" id="Segundos">:00</span>
-				<span class="reloj" id="Centesimas">:00</span>
-				<span>Movimientos: <span id="movs">0</span></span>
-				<span>Piezas restantes: <span id="piez"></span></span>
-			</div>
-
-		<br>
-
 	</div>
 
-	
-
-</div>
 
 
 
 
+	<footer id="pie">
+			<p> &copy; HTMLocomo todos los derechos reservados 2018. <a href="acerca.html">Acerca</a> de nosotros</p>
+			<img src="espera.jpg" style="display: none" alt="">
+	</footer>
+	<script>
+			prepararCanvas();
 
-<footer id="pie">
-		<p> &copy; HTMLocomo todos los derechos reservados 2018. <a href="acerca.html">Acerca</a> de nosotros</p>
-		<img src="espera.jpg" style="display: none">
-</footer>
-<script>
-		prepararCanvas();
-
-</script>
+	</script>
 
 	
 </body>
