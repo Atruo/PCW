@@ -429,10 +429,7 @@ function jugar(){
 				
 
 				res = corrige(pos,click);
-				if(res==1){
-					rest.innerHTML=_piezasDes-1;
-					console.log('Acierto')
-					if(_difi.value==0){
+				if(_difi.value==0){
 						extra=malo[pos];
 							extra2=ord[pos];
 						malo[pos]=malo[click];
@@ -459,11 +456,10 @@ function jugar(){
 					
 					dibujarOK();
 					contarAciertos();
-
-					console.log('Aciertos: '+_aciertos);
-
-
-					
+				if(res==1){
+					rest.innerHTML=_piezasDes-1;
+					console.log('Acierto')
+					console.log('Aciertos: '+_aciertos);					
 				}
 				click=-1;
 				primi =0;
