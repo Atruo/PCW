@@ -473,6 +473,7 @@ function jugar(){
 
 	cv02.onmousemove = function(e){
 
+
 		let x = e.offsetX,
 			y = e.offsetY;
 
@@ -480,6 +481,7 @@ function jugar(){
 				postAyuda();
 				_ayuda = 0;
 			}
+			
 			
 			pintarActual(x,y);	
 			

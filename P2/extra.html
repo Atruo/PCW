@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Inicio</title>
+	<title>Extra</title>
 	<link rel="stylesheet" href="estailo.css" type="text/css">
 	<link rel="stylesheet" href="css/fontello.css">
 	<script src='P2js.js'></script>
@@ -12,8 +12,7 @@
 
 </head>
 
-
-<body onload="comprobarStorage();">
+<body onload="comprobarStorage();" >
 	<header>
 
 		
@@ -37,47 +36,30 @@
 		
 		<li><a  href="index.html"><span class="icon-home-1"><span>Inicio</span></span></a></li>
 		<li><a  href="buscar.html"><span class="icon-search"><span>Buscar</span></span></a></li>
-		<li id="menu_login"><a  href="login.html"><span class="icon-login"><span>Login</span></span> </a></li>
+		<li id ="menu_login"><a  href="login.html"><span class="icon-login"><span>Login</span></span> </a></li>
 		<li id ="menu_registro"><a  href="registro.html"><span class="icon-user-plus"><span>Registro</span></span></a></li>
 		<li id ="menu_logout" onclick="cerrarSesion();"><a  href=""><span class="icon-logout"><span>Logout</span></span></a></li>
 		<li id ="menu_nueva"><a  href="nueva-receta.html"><span class="icon-doc-new"><span>Nueva Receta</span></span></a></li>
-		<li id ="extra"><a  href="extra.html"><span class="icon-doc-new"><span>Extra</span></span></a></li>
 		
 	</ul>
 </nav>
 
-<!-- Búsqueda Rápida -->
-
-	<div id="busqueda" class="card">
-		<form action="buscar.html">
-			<div>
-				<input type="search" name="busqueda" placeholder="Búsqueda por título...">
-				<input type="submit" name="submit" value="Buscar">
-			</div>
-		</form>
-	</div>	
-
-	
-
-<!-- Aqui estarán todas las recetas -->
-
-<div id="visorRecetas1"></div>
-<div id="visorRecetas2" style="display: none"></div>
-<div id="visorRecetas3" style="display: none"></div>
-
-	
-
-<div id="botonPag">
-<button id="izqMax" onclick="primeraPag();">&lt;&lt;</button>
-<button id="botonIzq" onclick="pincharBotonIzq();">&lt;</button>
-
-<div id="textoBoton">
-	<span id="paginaActual"></span>/<span id="totalRecetas"></span>
+<div id='modal' style='position: fixed; width: 350px; height: 190px; top: 0; left: 0; font-family:Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-weight: normal; border: #333333 3px solid; background-color: #FAFAFA; color: #000000; display:none;'>
+<h2>Enhorabuena!!!!</h2>
+<button onclick="cerrarVentana();">Cerrar</button>
 </div>
 
-<button id="botonDer" onclick="pincharBotonDer();">></button>
-<button id="derMax" onclick="ultimaPag();">>></button>
-</div>
+				<div>
+					<canvas id="orden"></canvas>
+				</div>
+				<button onclick="jugar();">Empezar</button>
+				<button onclick="mostrarVentana();">Ganar</button>
+
+				<div >
+					<canvas id="desorden"></canvas>
+				</div>
+
+
 
 <footer id="pie">
 		<p> &copy; HTMLocomo todos los derechos reservados 2018. <a href="acerca.html">Acerca</a> de nosotros 
@@ -85,6 +67,11 @@
 
 		</p>
 </footer>
+
+	<script>
+			prepararCanvas();
+
+	</script>
 </body>
 </html>
 

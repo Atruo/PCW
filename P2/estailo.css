@@ -9,7 +9,20 @@ font-family: 'Inconsolata', monospace;
 
 }
 
-
+	#modal>h2{
+		text-align: center;
+		margin-top: 4em;
+	}
+	#modal>button{
+		margin-left: 10em;
+		
+	}
+	#orden{
+	border: 1px solid #BE4A4A;
+}
+	#desorden{
+	border: 1px solid #BE4A4A;
+}
 body{
 min-width: 320px;
 max-width: 960px;

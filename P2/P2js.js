@@ -1498,3 +1498,346 @@ function irLogin(){
 	window.location.href="login.html";
 }
 
+
+function extra(){
+
+	var extraa = document.getElementById('desplegable');
+
+	let xhr = new XMLHttpRequest(),
+		url = 'rest/receta/?u=50';
+	var totalRecetas = 0;
+		
+	xhr.open('GET',url, true);
+	xhr.onload = function(){
+		var recetas = JSON.parse(xhr.responseText);			
+		console.log(recetas);
+
+			for(let i =0; i<3;i++){
+			extraa.innerHTML += `<option value="`+i+`">`+recetas.FILAS[i].autor+`</option>`;
+		}
+
+		};
+
+		xhr.send();
+
+
+		if(extraa.value == 1){
+			console.log('ESTO FUNCIONA RECHEVERE')
+		}
+
+
+
+}
+
+var _ANCHO = 600;
+var _ALTO = 50;
+function prepararCanvas(){
+	let cvs = document.getElementById("orden");
+	let cvs2 = document.getElementById("desorden");
+	let ctx2 = cvs2.getContext('2d');
+	let ctx = cvs.getContext('2d');
+
+	
+	cvs.width = _ANCHO;
+	cvs.height = _ALTO;
+
+	cvs2.width = _ANCHO;
+	cvs2.height = _ALTO;
+
+
+
+	separacion();
+	}
+
+function separacion(){
+	let cvs = document.getElementById("orden");
+	let cvs2 = document.getElementById("desorden");
+	let ctx2 = cvs2.getContext('2d');
+	let ctx = cvs.getContext('2d');
+	let nrows = 8;
+	
+	let dimy = cvs.width/nrows;
+
+	ctx.beginPath();
+	ctx.strokeStyle = '#E03939';
+	ctx.lineWidth = 5;
+
+	for(let i=0 ; i<nrows ; i++){
+		ctx.moveTo(i*dimy, 0);
+		ctx.lineTo(i*dimy, cvs.height);
+	}
+	
+	
+
+	ctx.rect(0,0,cvs.width,cvs.height);
+	ctx.stroke();
+
+	ctx2.beginPath();
+	ctx2.strokeStyle = '#E03939';
+	ctx2.lineWidth = 5;
+
+	for(let i=0 ; i<nrows ; i++){
+		ctx2.moveTo(i*dimy, 0);
+		ctx2.lineTo(i*dimy, cvs.height);
+	}
+	
+	
+
+	ctx2.rect(0,0,cvs.width,cvs.height);
+	ctx2.stroke();
+	letras();
+}
+
+function letras(){
+
+	let cvs = document.getElementById("orden");
+	let cvs2 = document.getElementById("desorden");
+	let ctx2 = cvs2.getContext('2d');
+	let ctx = cvs.getContext('2d');
+	let nrows = 8;
+
+
+
+	ctx.font = ' 20px Arial';
+	ctx.textAlign = 'left'; 
+	
+
+
+
+		var caja = ["A","B","C","D","E"]
+	var pos = 30;
+	console.log(caja.length)
+	for(let i = 0;i<caja.length;i++){
+		ctx.fillText(caja[i],pos,_ALTO/2);
+		console.log('PINTO')
+		pos+=75;
+	}
+
+	
+}
+var posicion = 30;
+var registro=[];
+var sol = [];
+function jugar(){
+	let cvs = document.getElementById("orden");
+	let cvs2 = document.getElementById("desorden");
+	let ctx2 = cvs2.getContext('2d');
+	let ctx = cvs.getContext('2d');
+
+	cvs.onclick = function(e){
+
+		var x = e.offsetX,
+			y = e.offsetY,
+			pos = getPosicion(x,y),			
+			si=false;
+			console.log(pos)
+
+			for(let i=0;i<registro.length;i++){
+				if(registro[i]==pos){
+					si=true;
+				}
+			}
+			if(si==false){
+				
+				registro.push(pos);
+				console.log('Registro: '+registro)
+				añadir(pos);
+			}
+			
+			console.log('SOL: '+sol)
+
+	}
+
+
+	cvs2.onclick = function(e){
+
+		let x = e.offsetX,
+			y = e.offsetY,
+			pos = getPosicion(x,y);				
+			quitar(pos);
+
+			
+			  registro.splice(pos, 1);
+			
+
+
+			if(posicion>30){
+				posicion=posicion-75;
+			}
+			console.log('REGISTRO QUITANDO: '+registro)
+	}
+
+	cvs2.onmousemove = function(e){
+
+		let x = e.offsetX,
+			y = e.offsetY,
+			pos = getPosicion(x,y);		
+
+			separacion();
+			pintarActual(pos,1);		
+				
+	}
+
+	cvs.onmousemove = function(e){
+
+		let x = e.offsetX,
+			y = e.offsetY,
+			pos = getPosicion(x,y);		
+
+			separacion();
+			pintarActual(pos,0);		
+				
+	}
+
+
+}
+
+function pintarActual(poss,w){
+	let cvs = document.getElementById("orden");
+	let cvs2 = document.getElementById("desorden");
+	let ctx2 = cvs2.getContext('2d');
+	let ctx = cvs.getContext('2d');
+
+	var xx=0,yy=75;
+
+	if(poss==0){
+		xx=0;
+		yy=75;
+	}
+	if(poss==1){
+		xx=75;
+		yy=150;
+	}
+	if(poss==2){
+		xx=150;
+		yy=225;
+	}
+	if(poss==3){
+		xx=225;
+		yy=300;
+	}
+	if(poss==4){
+		xx=300;
+		yy=375;
+	}
+	if(poss==5){
+		xx=375;
+		yy=450;
+	}
+	if(poss==6){
+		xx=450;
+		yy=525;
+	}
+	if(poss==7){
+		xx=525;
+		yy=600;
+	}
+	
+	if(w==1){
+		ctx2.strokeStyle = '#25F019';  // color linea
+		ctx2.lineWidth =4;  
+		ctx2.strokeRect(xx,0,75,_ALTO);
+	}else{
+		ctx.strokeStyle = '#2477D9';  // color linea
+		ctx.lineWidth =4;  
+		ctx.strokeRect(xx,0,75,_ALTO);
+	}
+		
+
+}
+
+function getPosicion(x,y){
+
+	if(x>=0 && x<75){
+		return 0;
+	}
+	if(x>=75 && x<150){
+		return 1;
+	}
+	if(x>=150 && x<225){
+		return 2;
+	}
+	if(x>=225 && x<300){
+		return 3;
+	}
+	if(x>=300 && x<375){
+		return 4;
+	}
+	if(x>=375 && x<450){
+		return 5;
+	}
+	if(x>=450 && x<525){
+		return 6;
+	}
+	if(x>=525 && x<600){
+		return 7;
+	}
+}
+
+
+function añadir(poss){
+
+	let cvs = document.getElementById("orden");
+	let cvs2 = document.getElementById("desorden");
+	let ctx2 = cvs2.getContext('2d');
+	let ctx = cvs.getContext('2d');
+
+	var caja = ["A","B","C","D","E"]
+	
+	
+
+	ctx2.font = ' 20px Arial';
+	ctx2.textAlign = 'left'; 
+	
+		sol.push(caja[poss]);
+		console.log(sol)
+		ctx2.fillText(caja[poss],posicion,_ALTO/2);
+		
+		posicion+=75;
+		
+	}
+
+function quitar(poss){
+	let cvs = document.getElementById("orden");
+	let cvs2 = document.getElementById("desorden");
+	let ctx2 = cvs2.getContext('2d');
+	let ctx = cvs.getContext('2d');
+	var sitio=30;
+
+	
+
+
+	
+		
+			  sol.splice(poss, 1);
+		
+
+
+
+
+		ctx2.clearRect(0,0,600,_ALTO)
+
+		for(let i = 0;i<sol.length;i++){
+			ctx2.fillText(sol[i],sitio,_ALTO/2);
+		
+			sitio+=75;
+		}
+		separacion();
+	
+}
+
+function mostrarVentana()
+{
+    var ventana = document.getElementById('modal');
+    ventana.style.marginTop = '100px';
+    ventana.style.left = ((document.body.clientWidth-350) / 2) +  'px';
+    ventana.style.display = 'block';
+}
+
+function cerrarVentana(){
+
+	var ventana = document.getElementById('modal');
+    ventana.style.display = 'none';
+}
+
+

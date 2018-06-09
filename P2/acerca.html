@@ -4,27 +4,46 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Acerca</title>
-	<link rel="stylesheet" href="estilo.css" type="text/css">
+	<link rel="stylesheet" href="estailo.css" type="text/css">
 	<link rel="stylesheet" href="css/fontello.css">
-	<script src='JS.js'></script>
+	<script src='P2js.js'></script>
 	
 
 
 </head>
-<body>
 
-<header>
-	<div>
-	
-		<img src="logo.jpg">
-		<h1>HTMLOPASOBIEN</h1>
-		<p id="deluxe">(puzzle deluxe V.I.P. edition)</p>
-		<p>¡Que Jocoso!</p>
-	</div>
+<body onload="comprobarStorage();">
+	<header>
+
 		
-</header>
+
+		<div>
+			<img src="logo1.jpg" alt="logotipo">
+			<h1>HTMLOCOMO</h1>
+			<p>¡Que Sabroso!</p>
+			
+
+		</div>
+		
+	</header>
 	
-<div>
+<nav>
+
+	<input type="checkbox" id="burger">
+	<ul>
+		
+		<li><label for="burger">&equiv;</label></li>
+		
+		<li><a  href="index.html"><span class="icon-home-1"><span>Inicio</span></span></a></li>
+		<li><a  href="buscar.html"><span class="icon-search"><span>Buscar</span></span></a></li>
+		<li id ="menu_login"><a  href="login.html"><span class="icon-login"><span>Login</span></span> </a></li>
+		<li id ="menu_registro"><a  href="registro.html"><span class="icon-user-plus"><span>Registro</span></span></a></li>
+		<li id ="menu_logout" onclick="cerrarSesion();"><a  href=""><span class="icon-logout"><span>Logout</span></span></a></li>
+		<li id ="menu_nueva"><a  href="nueva-receta.html"><span class="icon-doc-new"><span>Nueva Receta</span></span></a></li>
+		
+	</ul>
+</nav>
+
 <p>Integrantes de grupo: 
 <p>Sergio Bañuls Martínez, 48791763T, sbm72@alu.ua.es</p>
 <p>Sergio Campos García, 48789908P, scg63@alu.ua.es</p>
@@ -36,7 +55,6 @@
 	En esta practica 2 de PCW, nuestra intención era la de, partiendo desde una web estática que ya hicimos anteriormente, dotar a esta página de mayor interacción con el usuario. Informaríamos al usuario de las acciones que se están llevando a cabo y variaría dependiendo del resultado. Por otro lado, también trabajaríamos esta vez con contenido dinámico aportado por un servidor RESTful, para tener a nuestra disposición una base de datos con la trabajar, tanto para el almacenamiento de información de los usuarios como del contenido que se subiría; recetas en nuestro caso. Para conseguir la interacción con el usuario, implementamos en el código de la web JavaScript, sumado al css y al html anterior, los cuales hubo que cambiar ligeramente para que todo saliera correctamente. Para el servidor, nos ayudamos del servidor gratuito XAMPP, que venía implementado directamente en la máquina virtual. De todos los requisitos que se nos pidió en la práctica el único que no cumplimos fue el de conseguir almacenar una foto cuando creábamos una nueva receta. Por lo demás, todo se quedó en orden.
 
 </p>
-</div>
 
 
 
